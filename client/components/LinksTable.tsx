@@ -198,7 +198,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           </Col>
         </Td>
         <Td {...createdFlex} flexDirection="column" alignItems="flex-start">
-          <Text>{formatDistanceToNow(new Date(link.created_at), {locale: require('date-fns/locale/ru')})} ago</Text>
+          <Text>{formatDistanceToNow(new Date(link.created_at), {locale: 'date-fns/locale/ru'})} ago</Text>
           {link.expire_in && (
             <Text fontSize={[13, 14]} color="#888">
               Expires in{" "}
