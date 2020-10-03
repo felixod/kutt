@@ -84,7 +84,7 @@ export const create: Handler = async (req: CreateLinkReq, res) => {
 
   // Check if custom link already exists
   if (queries[4]) {
-    throw new CustomError("Custom URL is already in use.");
+    throw new CustomError("Этот URL-адрес уже используется.");
   }
 
   // Create new link
@@ -112,7 +112,7 @@ export const edit: Handler = async (req, res) => {
   const { address, target, description, expire_in } = req.body;
 
   if (!address && !target) {
-    throw new CustomError("Should at least update one field.");
+    throw new CustomError("Следует хотя бы обновить одно поле.");
   }
 
   const link = await query.link.find({
@@ -121,7 +121,7 @@ export const edit: Handler = async (req, res) => {
   });
 
   if (!link) {
-    throw new CustomError("Link was not found.");
+    throw new CustomError("Ссылка не найдена.");
   }
 
   const targetDomain = URL.parse(target).hostname;
@@ -142,7 +142,7 @@ export const edit: Handler = async (req, res) => {
 
   // Check if custom link already exists
   if (queries[2]) {
-    throw new CustomError("Custom URL is already in use.");
+    throw new CustomError("Этот URL-адрес уже используется.");
   }
 
   // Update link
@@ -168,12 +168,12 @@ export const remove: Handler = async (req, res) => {
   });
 
   if (!link) {
-    throw new CustomError("Could not delete the link");
+    throw new CustomError("Не удалось удалить ссылку");
   }
 
   return res
     .status(200)
-    .send({ message: "Link has been deleted successfully." });
+    .send({ message: "Ссылка успешно удалена." });
 };
 
 export const report: Handler = async (req, res) => {
@@ -182,17 +182,17 @@ export const report: Handler = async (req, res) => {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: env.REPORT_EMAIL,
-    subject: "[REPORT]",
+    subject: "[ОТЧЕТ]",
     text: link,
     html: link
   });
 
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't submit the report. Try again later.");
+    throw new CustomError("Не удалось отправить отчет. Попробуйте позже.");
   }
   return res
     .status(200)
-    .send({ message: "Thanks for the report, we'll take actions shortly." });
+    .send({ message: "Спасибо за отчет, в ближайшее время мы примем меры." });
 };
 
 export const ban: Handler = async (req, res) => {
@@ -207,11 +207,11 @@ export const ban: Handler = async (req, res) => {
   const link = await query.link.find({ uuid: id });
 
   if (!link) {
-    throw new CustomError("No link has been found.", 400);
+    throw new CustomError("Ссылка не найдена.", 400);
   }
 
   if (link.banned) {
-    return res.status(200).send({ message: "Link has been banned already." });
+    return res.status(200).send({ message: "Ссылка уже заблокирована." });
   }
 
   const tasks = [];
@@ -229,7 +229,7 @@ export const ban: Handler = async (req, res) => {
   // 4. Ban target's host
   if (req.body.host) {
     const dnsRes = await dnsLookup(domain).catch(() => {
-      throw new CustomError("Couldn't fetch DNS info.");
+      throw new CustomError("Не удалось получить информацию о DNS.");
     });
     const host = dnsRes?.address;
     tasks.push(query.host.add({ ...update, address: host }));
@@ -247,11 +247,11 @@ export const ban: Handler = async (req, res) => {
 
   // 7. Wait for all tasks to finish
   await Promise.all(tasks).catch(() => {
-    throw new CustomError("Couldn't ban entries.");
+    throw new CustomError("Не удалось заблокировать записи.");
   });
 
   // 8. Send response
-  return res.status(200).send({ message: "Banned link successfully." });
+  return res.status(200).send({ message: "Ссылка заблокирована." });
 };
 
 export const redirect = (app: ReturnType<typeof next>): Handler => async (
@@ -335,14 +335,14 @@ export const redirectProtected: Handler = async (req, res) => {
 
   // 2. Throw error if no link
   if (!link || !link.password) {
-    throw new CustomError("Couldn't find the link.", 400);
+    throw new CustomError("Не удалось найти ссылку.", 400);
   }
 
   // 3. Check if password matches
   const matches = await bcrypt.compare(req.body.password, link.password);
 
   if (!matches) {
-    throw new CustomError("Password is not correct.", 401);
+    throw new CustomError("Пароль неверный.", 401);
   }
 
   // 4. Create visit
@@ -408,13 +408,13 @@ export const stats: Handler = async (req, res) => {
   });
 
   if (!link) {
-    throw new CustomError("Link could not be found.");
+    throw new CustomError("Ссылка не найдена.");
   }
 
   const stats = await query.visit.find({ link_id: link.id }, link.visit_count);
 
   if (!stats) {
-    throw new CustomError("Could not get the short link stats.");
+    throw new CustomError("Не удалось получить статистику по коротким ссылкам.");
   }
 
   return res.status(200).send({
