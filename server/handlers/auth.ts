@@ -30,14 +30,14 @@ const authenticate = (
 
       if (user && isStrict && !user.verified) {
         throw new CustomError(
-          "Your email address is not verified. " +
-            "Click on signup to get the verification link again.",
+          "Ваш электронный адрес не подтвержден. " +
+            "Нажмите на кнопку 'Зарегистрироваться', чтобы снова получить ссылку для подтверждения.",
           400
         );
       }
 
       if (user && user.banned) {
-        throw new CustomError("You're banned from using this website.", 403);
+        throw new CustomError("Вам запрещено использовать этот сайт.", 403);
       }
 
       if (user) {
@@ -51,12 +51,12 @@ const authenticate = (
     })(req, res, next);
   };
 
-export const local = authenticate("local", "Login credentials are wrong.");
-export const jwt = authenticate("jwt", "Unauthorized.");
-export const jwtLoose = authenticate("jwt", "Unauthorized.", false);
+export const local = authenticate("local", "Учетные данные неверны.");
+export const jwt = authenticate("jwt", "Неавторизован.");
+export const jwtLoose = authenticate("jwt", "Неавторизован.", false);
 export const apikey = authenticate(
   "localapikey",
-  "API key is not correct.",
+  "Ключ API неверен.",
   false
 );
 
@@ -74,7 +74,7 @@ export const cooldown: Handler = async (req, res, next) => {
     const timeToWait =
       cooldownConfig - differenceInMinutes(new Date(), new Date(ip.created_at));
     throw new CustomError(
-      `Non-logged in users are limited. Wait ${timeToWait} minutes or log in.`,
+      `Пользователи, не вошедшие в систему, ограничены. Подождите ${timeToWait} минут или авторизуйтесь.`,
       400
     );
   }
@@ -100,7 +100,7 @@ export const recaptcha: Handler = async (req, res, next) => {
   });
 
   if (!isReCaptchaValid.data.success) {
-    throw new CustomError("reCAPTCHA is not valid. Try again.", 401);
+    throw new CustomError("reCAPTCHA недействителен. Попробуйте снова.", 401);
   }
 
   return next();
@@ -108,7 +108,7 @@ export const recaptcha: Handler = async (req, res, next) => {
 
 export const admin: Handler = async (req, res, next) => {
   if (req.user.admin) return next();
-  throw new CustomError("Unauthorized", 401);
+  throw new CustomError("Неавторизован", 401);
 };
 
 export const signup: Handler = async (req, res) => {
@@ -122,7 +122,7 @@ export const signup: Handler = async (req, res) => {
 
   await mail.verification(user);
 
-  return res.status(201).send({ message: "Verification email has been sent." });
+  return res.status(201).send({ message: "Письмо с подтверждением отправлено." });
 };
 
 export const token: Handler = async (req, res) => {
@@ -160,12 +160,12 @@ export const changePassword: Handler = async (req, res) => {
   const [user] = await query.user.update({ id: req.user.id }, { password });
 
   if (!user) {
-    throw new CustomError("Couldn't change the password. Try again later.");
+    throw new CustomError("Не удалось изменить пароль. Попробуйте позже.");
   }
 
   return res
     .status(200)
-    .send({ message: "Your password has been changed successfully." });
+    .send({ message: "Ваш пароль был успешно изменен." });
 };
 
 export const generateApiKey: Handler = async (req, res) => {
@@ -176,7 +176,7 @@ export const generateApiKey: Handler = async (req, res) => {
   const [user] = await query.user.update({ id: req.user.id }, { apikey });
 
   if (!user) {
-    throw new CustomError("Couldn't generate API key. Please try again later.");
+    throw new CustomError("Не удалось сгенерировать ключ API. Пожалуйста, попробуйте позже.");
   }
 
   return res.status(201).send({ apikey });
@@ -222,7 +222,7 @@ export const resetPassword: Handler = async (req, res, next) => {
 
 export const signupAccess: Handler = (req, res, next) => {
   if (!env.DISALLOW_REGISTRATION) return next();
-  return res.status(403).send({ message: "Registration is not allowed." });
+  return res.status(403).send({ message: "Регистрация не разрешена." });
 };
 
 export const changeEmailRequest: Handler = async (req, res) => {
@@ -231,13 +231,13 @@ export const changeEmailRequest: Handler = async (req, res) => {
   const isMatch = await bcrypt.compare(password, req.user.password);
 
   if (!isMatch) {
-    throw new CustomError("Password is wrong.", 400);
+    throw new CustomError("Пароль неверный.", 400);
   }
 
   const currentUser = await query.user.find({ email });
 
   if (currentUser) {
-    throw new CustomError("Can't use this email address.", 400);
+    throw new CustomError("Не могу использовать этот адрес электронной почты.", 400);
   }
 
   const [updatedUser] = await query.user.update(
@@ -257,8 +257,8 @@ export const changeEmailRequest: Handler = async (req, res) => {
 
   return res.status(200).send({
     message:
-      "If email address exists, an email " +
-      "with a verification link has been sent."
+      "Если адрес электронной почты существует, письмо " +
+      "с проверочной ссылкой будет отправлено."
   });
 };
 
