@@ -92,8 +92,8 @@ const ogLinkFlex = { flexGrow: [1, 3, 7], flexShrink: [1, 3, 7] };
 const createdFlex = { flexGrow: [1, 1, 2.5], flexShrink: [1, 1, 2.5] };
 const shortLinkFlex = { flexGrow: [1, 1, 3], flexShrink: [1, 1, 3] };
 const viewsFlex = {
-  flexGrow: [0.5, 0.5, 1],
-  flexShrink: [0.5, 0.5, 1],
+  flexGrow: [0.7, 0.7, 1],
+  flexShrink: [0.7, 0.7, 1],
   justifyContent: "flex-end"
 };
 const actionsFlex = { flexGrow: [1, 1, 3], flexShrink: [1, 1, 3] };
@@ -519,7 +519,7 @@ const LinksTable: FC = () => {
   const isAdmin = useStoreState(s => s.auth.isAdmin);
   const links = useStoreState(s => s.links);
   const { get, remove } = useStoreActions(s => s.links);
-  const [tableMessage, setTableMessage] = useState("No links to show.");
+  const [tableMessage, setTableMessage] = useState("Нет ссылок для отображения.");
   const [deleteModal, setDeleteModal] = useState(-1);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteMessage, setDeleteMessage] = useMessage();
@@ -533,7 +533,7 @@ const LinksTable: FC = () => {
 
   useEffect(() => {
     get(options).catch(err =>
-      setTableMessage(err?.response?.data?.error || "An error occurred.")
+      setTableMessage(err?.response?.data?.error || "Произошла ошибка.")
     );
   }, [options.limit, options.skip, options.all]);
 
