@@ -15,7 +15,7 @@ const Features = () => (
     backgroundColor={Colors.FeaturesBg}
   >
     <H3 fontSize={[26, 28]} mb={72} light>
-      Kutting edge features.
+      Новейшие особенности.
     </H3>
     <Flex
       width={1200}
@@ -24,18 +24,21 @@ const Features = () => (
       justifyContent="center"
       flexWrap={["wrap", "wrap", "wrap", "nowrap"]}
     >
-      <FeaturesItem title="Managing links" icon="edit">
-        Create, protect and delete your links and monitor them with detailed
-        statistics.
+      <FeaturesItem title="Управление ссылками" icon="edit">
+        Создавайте, защищайте, удаляйте свои ссылки и отслеживайте их 
+        с помощью подробной статистики.
       </FeaturesItem>
-      <FeaturesItem title="Custom domain" icon="shuffle">
-        Use custom domains for your links. Add or remove them for free.
+      <FeaturesItem title="Свой домен" icon="shuffle">
+        Используйте собственные домены для ваших ссылок. Добавляйте или 
+        удаляйте их бесплатно.
       </FeaturesItem>
       <FeaturesItem title="API" icon="zap">
-        Use the provided API to create, delete, and get URLs from anywhere.
+        Используйте предоставленный API для создания, удаления и получения 
+        URL-адресов из любого места.
       </FeaturesItem>
-      <FeaturesItem title="Free &amp; open source" icon="heart">
-        Completely open source and free. You can host it on your own server.
+      <FeaturesItem title="Свободный и открытый код" icon="heart">
+        Полностью бесплатный и открытый исходный код. Вы можете разместить 
+        его на своем собственном сервере.
       </FeaturesItem>
     </Flex>
   </ColCenterH>
