@@ -54,15 +54,15 @@ const LoginPage = () => {
       if (loading.login || loading.signup) return null;
 
       if (!email) {
-        return setError("Email address must not be empty.");
+        return setError("Адрес электронной почты не может быть пустым.");
       }
 
       if (!emailValidator.validate(email)) {
-        return setError("Email address is not valid.");
+        return setError("Адрес электронной почты недействителен.");
       }
 
       if (password.trim().length < 8) {
-        return setError("Password must be at least 8 chars long.");
+        return setError("Пароль должен содержать не менее 8 символов.");
       }
 
       setError("");
@@ -100,17 +100,17 @@ const LoginPage = () => {
       <ColCenterV maxWidth="100%" px={3} flex="0 0 auto" mt={4}>
         {verifying ? (
           <H2 textAlign="center" light>
-            A verification email has been sent to{" "}
+            Письмо-подтверждение было отправлено{" "}
             <Email>{formState.values.email}</Email>.
           </H2>
         ) : (
           <LoginForm id="login-form" onSubmit={onSubmit("login")}>
             <Text {...label("email")} as="label" mb={2} bold>
-              Email address:
+              Адрес электронной почты:
             </Text>
             <TextInput
               {...email("email")}
-              placeholder="Email address..."
+              placeholder="Адрес электронной почты..."
               height={[56, 64, 72]}
               fontSize={[15, 16]}
               px={[4, 40]}
@@ -124,7 +124,7 @@ const LoginPage = () => {
             </Text>
             <TextInput
               {...password("password")}
-              placeholder="Password..."
+              placeholder="Пароль..."
               px={[4, 40]}
               height={[56, 64, 72]}
               fontSize={[15, 16]}
@@ -171,7 +171,7 @@ const LoginPage = () => {
                 alignSelf="flex-start"
                 my={16}
               >
-                Forgot your password?
+                Вы забыли пароль?
               </ALink>
             </Link>
             <Text color="red" mt={1} normal>
