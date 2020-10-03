@@ -27,10 +27,10 @@ const ReportPage = () => {
     setMessage();
     try {
       await axios.post(`${APIv2.Links}/report`, { link: formState.values.url });
-      setMessage("Thanks for the report, we'll take actions shortly.", "green");
+      setMessage("Спасибо за отчет, в ближайшее время мы примем меры.", "green");
       formState.clear();
     } catch (error) {
-      setMessage(error?.response?.data?.error || "Couldn't send report.");
+      setMessage(error?.response?.data?.error || "Не удалось отправить отчет.");
     }
 
     setLoading(false);
@@ -40,17 +40,18 @@ const ReportPage = () => {
     <AppWrapper>
       <Col width={600} maxWidth="97%" alignItems="flex-start">
         <H2 my={3} bold>
-          Report abuse
+          Сообщить о нарушении
         </H2>
         <Text mb={3}>
-          Report abuses, malware and phishing links to the below email address
-          or use the form. We will take actions shortly.
+        Сообщайте о злоупотреблениях, вредоносном ПО и фишинговых ссылках 
+        на указанный ниже адрес электронной почты или используйте эту форму. 
+        Мы примем меры в ближайшее время.
         </Text>
         <Text mb={4}>
           {(publicRuntimeConfig.REPORT_EMAIL || "").replace("@", "[at]")}
         </Text>
         <Text mb={3}>
-          <Span bold>URL containing malware/scam:</Span>
+          <Span bold>Адрес, содержащий вредоносное ПО/фишинговые ссылки:</Span>
         </Text>
         <Flex
           as="form"
@@ -61,7 +62,7 @@ const ReportPage = () => {
         >
           <TextInput
             {...text("url")}
-            placeholder={`${publicRuntimeConfig.DEFAULT_DOMAIN}/example`}
+            placeholder={`${publicRuntimeConfig.DEFAULT_DOMAIN}/пример`}
             height={[44, 54]}
             width={[1, 1 / 2]}
             flex="0 0 auto"
@@ -70,7 +71,7 @@ const ReportPage = () => {
           />
           <Button type="submit" flex="0 0 auto" height={[40, 44]} mt={[3, 0]}>
             {loading && <Icon name={"spinner"} stroke="white" mr={2} />}
-            Send report
+            Отправить жалобу
           </Button>
         </Flex>
         <Text fontSize={14} mt={3} color={message.color}>
