@@ -620,7 +620,7 @@ const LinksTable: FC = () => {
               <Flex as="form" onSubmit={onSubmit}>
                 <TextInput
                   {...text("search")}
-                  placeholder="Search..."
+                  placeholder="Поиск..."
                   height={[30, 32]}
                   placeholderSize={[13, 13, 13, 13]}
                   fontSize={[14]}
@@ -635,7 +635,7 @@ const LinksTable: FC = () => {
                   <Checkbox
                     {...label("all")}
                     {...checkbox("all")}
-                    label="All links"
+                    label="Все ссылки"
                     ml={3}
                     fontSize={[14, 15]}
                     width={[15, 16]}
@@ -647,10 +647,10 @@ const LinksTable: FC = () => {
             {Nav}
           </Tr>
           <Tr>
-            <Th {...ogLinkFlex}>Original URL</Th>
-            <Th {...createdFlex}>Created</Th>
-            <Th {...shortLinkFlex}>Short URL</Th>
-            <Th {...viewsFlex}>Views</Th>
+            <Th {...ogLinkFlex}>Исходный URL</Th>
+            <Th {...createdFlex}>Создано</Th>
+            <Th {...shortLinkFlex}>Короткий URL</Th>
+            <Th {...viewsFlex}>Просмотры</Th>
             <Th {...actionsFlex}></Th>
           </Tr>
         </thead>
@@ -659,7 +659,7 @@ const LinksTable: FC = () => {
             <Tr width={1} justifyContent="center">
               <Td flex="1 1 auto" justifyContent="center">
                 <Text fontSize={18} light>
-                  {links.loading ? "Loading links..." : tableMessage}
+                  {links.loading ? "Загрузка ссылок..." : tableMessage}
                 </Text>
               </Td>
             </Tr>
@@ -691,7 +691,7 @@ const LinksTable: FC = () => {
               Delete link?
             </H2>
             <Text textAlign="center">
-              Are you sure do you want to delete the link{" "}
+              Вы уверены, что хотите удалить ссылку{" "}
               <Span bold>"{removeProtocol(linkToDelete.link)}"</Span>?
             </Text>
             <Flex justifyContent="center" mt={44}>
@@ -710,11 +710,11 @@ const LinksTable: FC = () => {
                     mr={3}
                     onClick={() => setDeleteModal(-1)}
                   >
-                    Cancel
+                    Отмена
                   </Button>
                   <Button color="red" ml={3} onClick={onDelete}>
                     <Icon name="trash" stroke="white" mr={2} />
-                    Delete
+                    Удалить
                   </Button>
                 </>
               )}
