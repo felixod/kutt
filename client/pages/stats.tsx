@@ -70,8 +70,8 @@ const StatsPage: NextPage<Props> = ({ id }) => {
 
   const total = stats && stats.views.reduce((sum, view) => sum + view, 0);
   const periodText = period.includes("last")
-    ? `the last ${period.replace("last", "").toLocaleLowerCase()}`
-    : "all time";
+    ? `за последний(юю) ${period.replace("last", "").toLocaleLowerCase()}`
+    : "все время";
 
   return (
     <AppWrapper>
@@ -82,7 +82,7 @@ const StatsPage: NextPage<Props> = ({ id }) => {
             <Flex justifyContent="space-between" alignItems="center" mb={3}>
               <H1 fontSize={[18, 20, 24]} light>
                 Статистика для:{" "}
-                <ALink href={data.link} title="Short link">
+                <ALink href={data.link} title="Короткая ссылка">
                   {removeProtocol(data.link)}
                 </ALink>
               </H1>
@@ -141,7 +141,7 @@ const StatsPage: NextPage<Props> = ({ id }) => {
                   >
                     {total}
                   </Span>{" "}
-                  отслеженные переходы за {periodText}.
+                  отслеженных перехода(ов) за {periodText}.
                 </H2>
                 <Text fontSize={[13, 14]} color={Colors.StatsLastUpdateText}>
                   Последнее обновление в{" "}
