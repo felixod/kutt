@@ -88,7 +88,7 @@ export const shortener: Handler = async (req, res) => {
 
     // Check if custom link already exists
     if (queries[4]) {
-      throw new Error("Custom URL is already in use.");
+      throw new Error("Этот адрес уже используется.");
     }
 
     // Create new link
@@ -153,7 +153,7 @@ export const goToLink: Handler = async (req, res, next) => {
   if (link.password) {
     const isMatch = await bcrypt.compare(req.body.password, link.password);
     if (!isMatch) {
-      return res.status(401).json({ error: "Password is not correct" });
+      return res.status(401).json({ error: "Пароль неверный" });
     }
     if (link.user_id && !isBot) {
       queue.visit.add({
@@ -204,20 +204,20 @@ export const setCustomDomain: Handler = async (req, res) => {
   const parsed = URL.parse(req.body.customDomain);
   const customDomain = parsed.hostname || parsed.href;
   if (!customDomain)
-    return res.status(400).json({ error: "Domain is not valid." });
+    return res.status(400).json({ error: "Домен недействителен." });
   if (customDomain.length > 40) {
     return res
       .status(400)
-      .json({ error: "Maximum custom domain length is 40." });
+      .json({ error: "Максимальная длина личного домена - 40 символов." });
   }
   if (customDomain === env.DEFAULT_DOMAIN) {
-    return res.status(400).json({ error: "You can't use default domain." });
+    return res.status(400).json({ error: "Вы не можете использовать домен по умолчанию." });
   }
   const isValidHomepage =
     !req.body.homepage ||
     urlRegex({ exact: true, strict: false }).test(req.body.homepage);
   if (!isValidHomepage)
-    return res.status(400).json({ error: "Homepage is not valid." });
+    return res.status(400).json({ error: "Домашняя страница недействительна." });
   const homepage =
     req.body.homepage &&
     (URL.parse(req.body.homepage).protocol
@@ -230,7 +230,7 @@ export const setCustomDomain: Handler = async (req, res) => {
     matchedDomain.user_id !== req.user.id
   ) {
     return res.status(400).json({
-      error: "Domain is already taken. Contact us for multiple users."
+      error: "Домен уже занят. Свяжитесь с нами для организации совместной работы."
     });
   }
   const userCustomDomain = await setDomain(
@@ -247,14 +247,14 @@ export const setCustomDomain: Handler = async (req, res) => {
       homepage: userCustomDomain.homepage
     });
   }
-  return res.status(400).json({ error: "Couldn't set custom domain." });
+  return res.status(400).json({ error: "Не удалось установить личный домен." });
 };
 
 export const deleteCustomDomain: Handler = async (req, res) => {
   const response = await deleteDomain(req.user);
   if (response)
-    return res.status(200).json({ message: "Domain deleted successfully" });
-  return res.status(400).json({ error: "Couldn't delete custom domain." });
+    return res.status(200).json({ message: "Домен успешно удален" });
+  return res.status(400).json({ error: "Не удалось удалить личный домен." });
 };
 
 export const customDomainRedirection: Handler = async (req, res, next) => {
@@ -279,7 +279,7 @@ export const deleteUserLink: Handler = async (req, res) => {
   const { id, domain } = req.body;
 
   if (!id) {
-    return res.status(400).json({ error: "No id has been provided." });
+    return res.status(400).json({ error: "Идентификатор не указан." });
   }
 
   const response = await deleteLink({
@@ -289,15 +289,15 @@ export const deleteUserLink: Handler = async (req, res) => {
   });
 
   if (response) {
-    return res.status(200).json({ message: "Short link deleted successfully" });
+    return res.status(200).json({ message: "Короткая ссылка успешно удалена" });
   }
 
-  return res.status(400).json({ error: "Couldn't delete the short link." });
+  return res.status(400).json({ error: "Не удалось удалить короткую ссылку." });
 };
 
 export const getLinkStats: Handler = async (req, res) => {
   if (!req.query.id) {
-    return res.status(400).json({ error: "No id has been provided." });
+    return res.status(400).json({ error: "Идентификатор не указан." });
   }
 
   const { hostname } = URL.parse(req.query.domain);
@@ -317,7 +317,7 @@ export const getLinkStats: Handler = async (req, res) => {
   });
 
   if (!link) {
-    return res.status(400).json({ error: "Couldn't find the short link." });
+    return res.status(400).json({ error: "Не удалось найти короткую ссылку." });
   }
 
   const stats = await getStats(link, customDomain);
@@ -325,7 +325,7 @@ export const getLinkStats: Handler = async (req, res) => {
   if (!stats) {
     return res
       .status(400)
-      .json({ error: "Could not get the short link stats." });
+      .json({ error: "Не удалось получить статистику по коротким ссылкам." });
   }
 
   const cacheTime = getStatsCacheTime(0);
@@ -335,13 +335,13 @@ export const getLinkStats: Handler = async (req, res) => {
 
 export const reportLink: Handler = async (req, res) => {
   if (!req.body.link) {
-    return res.status(400).json({ error: "No URL has been provided." });
+    return res.status(400).json({ error: "URL не указан." });
   }
 
   const { hostname } = URL.parse(req.body.link);
   if (hostname !== env.DEFAULT_DOMAIN) {
     return res.status(400).json({
-      error: `You can only report a ${env.DEFAULT_DOMAIN} link`
+      error: `Вы можете отправить жалобу только на ссылку в домене ${env.DEFAULT_DOMAIN}`
     });
   }
 
@@ -355,23 +355,23 @@ export const reportLink: Handler = async (req, res) => {
   if (mail.accepted.length) {
     return res
       .status(200)
-      .json({ message: "Thanks for the report, we'll take actions shortly." });
+      .json({ message: "Спасибо за отчет, в ближайшее время мы примем меры." });
   }
   return res
     .status(400)
-    .json({ error: "Couldn't submit the report. Try again later." });
+    .json({ error: "Не удалось отправить отчет. Попробуйте позже." });
 };
 
 export const ban: Handler = async (req, res) => {
   if (!req.body.id)
-    return res.status(400).json({ error: "No id has been provided." });
+    return res.status(400).json({ error: "Идентификатор не указан." });
 
   const link = await findLink({ address: req.body.id, domain_id: null });
 
-  if (!link) return res.status(400).json({ error: "Link does not exist." });
+  if (!link) return res.status(400).json({ error: "Ссылка не существует." });
 
   if (link.banned) {
-    return res.status(200).json({ message: "Link was banned already." });
+    return res.status(200).json({ message: "Ссылка уже заблокирована." });
   }
 
   const domain = URL.parse(link.target).hostname;
@@ -394,5 +394,5 @@ export const ban: Handler = async (req, res) => {
     banUser: !!req.body.user
   });
 
-  return res.status(200).json({ message: "Link has been banned successfully" });
+  return res.status(200).json({ message: "Ссылка успешно заблокирована" });
 };

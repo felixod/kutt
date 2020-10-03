@@ -43,51 +43,51 @@ export const checkUser = (value, { req }) => !!req.user;
 export const createLink = [
   body("target")
     .exists({ checkNull: true, checkFalsy: true })
-    .withMessage("Target is missing.")
+    .withMessage("Цель отсутствует.")
     .isString()
     .trim()
     .isLength({ min: 1, max: 2040 })
-    .withMessage("Maximum URL length is 2040.")
+    .withMessage("Максимальная длина URL-адреса - 2040.")
     .customSanitizer(addProtocol)
     .custom(
       value =>
         urlRegex({ exact: true, strict: false }).test(value) ||
         /^(?!https?)(\w+):\/\//.test(value)
     )
-    .withMessage("URL is not valid.")
+    .withMessage("URL-адрес недействителен.")
     .custom(value => URL.parse(value).host !== env.DEFAULT_DOMAIN)
-    .withMessage(`${env.DEFAULT_DOMAIN} URLs are not allowed.`),
+    .withMessage(`${env.DEFAULT_DOMAIN} URL-адреса не разрешены.`),
   body("password")
     .optional({ nullable: true, checkFalsy: true })
     .custom(checkUser)
-    .withMessage("Only users can use this field.")
+    .withMessage("Только зарегистрированные пользователи могут использовать это поле.")
     .isString()
     .isLength({ min: 3, max: 64 })
-    .withMessage("Password length must be between 3 and 64."),
+    .withMessage("Длина пароля должна быть от 3 до 64."),
   body("customurl")
     .optional({ nullable: true, checkFalsy: true })
     .custom(checkUser)
-    .withMessage("Only users can use this field.")
+    .withMessage("Только зарегистрированные пользователи могут использовать это поле.")
     .isString()
     .trim()
     .isLength({ min: 1, max: 64 })
-    .withMessage("Custom URL length must be between 1 and 64.")
+    .withMessage("Длина настраиваемого URL-адреса должна быть от 1 до 64.")
     .custom(value => /^[a-zA-Z0-9-_]+$/g.test(value))
-    .withMessage("Custom URL is not valid")
+    .withMessage("Настраиваемый URL-адрес недействителен.")
     .custom(value => !preservedUrls.some(url => url.toLowerCase() === value))
-    .withMessage("You can't use this custom URL."),
+    .withMessage("Вы не можете использовать этот настраиваемый URL."),
   body("reuse")
     .optional({ nullable: true })
     .custom(checkUser)
-    .withMessage("Only users can use this field.")
+    .withMessage("Только зарегистрированные пользователи могут использовать это поле.")
     .isBoolean()
-    .withMessage("Reuse must be boolean."),
+    .withMessage("Повторное использование должно быть логическим."),
   body("description")
     .optional({ nullable: true, checkFalsy: true })
     .isString()
     .trim()
     .isLength({ min: 0, max: 2040 })
-    .withMessage("Description length must be between 0 and 2040."),
+    .withMessage("Длина описания должна быть от 0 до 2040."),
   body("expire_in")
     .optional({ nullable: true, checkFalsy: true })
     .isString()
@@ -99,17 +99,17 @@ export const createLink = [
         return false;
       }
     })
-    .withMessage("Expire format is invalid. Valid examples: 1m, 8h, 42 days.")
+    .withMessage("Неправильно указан срок действия ссылки. Примеры правильного использования: 1m, 8h, 42 days.")
     .customSanitizer(ms)
     .custom(value => value >= ms("1m"))
-    .withMessage("Minimum expire time should be '1 minute'.")
+    .withMessage("Минимальное время истечения должно быть '1 минута'.")
     .customSanitizer(value => addMilliseconds(new Date(), value).toISOString()),
   body("domain")
     .optional({ nullable: true, checkFalsy: true })
     .custom(checkUser)
-    .withMessage("Only users can use this field.")
+    .withMessage("Только зарегистрированные пользователи могут использовать это поле.")
     .isString()
-    .withMessage("Domain should be string.")
+    .withMessage("Домен должен быть строкой.")
     .customSanitizer(value => value.toLowerCase())
     .customSanitizer(value => URL.parse(value).hostname || value)
     .custom(async (address, { req }) => {
@@ -126,7 +126,7 @@ export const createLink = [
 
       if (!domain) return Promise.reject();
     })
-    .withMessage("You can't use this domain.")
+    .withMessage("Вы не можете использовать этот домен.")
 ];
 
 export const editLink = [
@@ -135,26 +135,26 @@ export const editLink = [
     .isString()
     .trim()
     .isLength({ min: 1, max: 2040 })
-    .withMessage("Maximum URL length is 2040.")
+    .withMessage("Максимальная длина URL-адреса - 2040.")
     .customSanitizer(addProtocol)
     .custom(
       value =>
         urlRegex({ exact: true, strict: false }).test(value) ||
         /^(?!https?)(\w+):\/\//.test(value)
     )
-    .withMessage("URL is not valid.")
+    .withMessage("URL-адрес недействителен.")
     .custom(value => URL.parse(value).host !== env.DEFAULT_DOMAIN)
-    .withMessage(`${env.DEFAULT_DOMAIN} URLs are not allowed.`),
+    .withMessage(`${env.DEFAULT_DOMAIN} URL-адреса не разрешены.`),
   body("address")
     .optional({ checkFalsy: true, nullable: true })
     .isString()
     .trim()
     .isLength({ min: 1, max: 64 })
-    .withMessage("Custom URL length must be between 1 and 64.")
+    .withMessage("Длина настраиваемого URL-адреса должна быть от 1 до 64.")
     .custom(value => /^[a-zA-Z0-9-_]+$/g.test(value))
-    .withMessage("Custom URL is not valid")
+    .withMessage("Настраиваемый URL-адрес недействителен.")
     .custom(value => !preservedUrls.some(url => url.toLowerCase() === value))
-    .withMessage("You can't use this custom URL."),
+    .withMessage("Вы не можете использовать этот настраиваемый URL."),
   body("expire_in")
     .optional({ nullable: true, checkFalsy: true })
     .isString()
@@ -166,17 +166,17 @@ export const editLink = [
         return false;
       }
     })
-    .withMessage("Expire format is invalid. Valid examples: 1m, 8h, 42 days.")
+    .withMessage("Неправильно указан срок действия ссылки. Примеры правильного использования: 1m, 8h, 42 days.")
     .customSanitizer(ms)
     .custom(value => value >= ms("1m"))
-    .withMessage("Minimum expire time should be '1 minute'.")
+    .withMessage("Минимальное время истечения должно быть '1 минута'.")
     .customSanitizer(value => addMilliseconds(new Date(), value).toISOString()),
   body("description")
     .optional({ nullable: true, checkFalsy: true })
     .isString()
     .trim()
     .isLength({ min: 0, max: 2040 })
-    .withMessage("Description length must be between 0 and 2040."),
+    .withMessage("Длина описания должна быть от 0 до 2040."),
   param("id", "ID is invalid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 36, max: 36 })
@@ -187,7 +187,7 @@ export const redirectProtected = [
     .exists({ checkFalsy: true, checkNull: true })
     .isString()
     .isLength({ min: 3, max: 64 })
-    .withMessage("Password length must be between 3 and 64."),
+    .withMessage("Длина пароля должна быть от 3 до 64."),
   param("id", "ID is invalid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 36, max: 36 })
@@ -197,7 +197,7 @@ export const addDomain = [
   body("address", "Domain is not valid")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 3, max: 64 })
-    .withMessage("Domain length must be between 3 and 64.")
+    .withMessage("Длина домена должна быть от 3 до 64.")
     .trim()
     .customSanitizer(value => {
       const parsed = URL.parse(value);
@@ -205,17 +205,17 @@ export const addDomain = [
     })
     .custom(value => urlRegex({ exact: true, strict: false }).test(value))
     .custom(value => value !== env.DEFAULT_DOMAIN)
-    .withMessage("You can't use the default domain.")
+    .withMessage("Вы не можете использовать домен по умолчанию.")
     .custom(async value => {
       const domain = await query.domain.find({ address: value });
       if (domain?.user_id || domain?.banned) return Promise.reject();
     })
-    .withMessage("You can't add this domain."),
+    .withMessage("Вы не можете добавить этот домен."),
   body("homepage")
     .optional({ checkFalsy: true, nullable: true })
     .customSanitizer(addProtocol)
     .custom(value => urlRegex({ exact: true, strict: false }).test(value))
-    .withMessage("Homepage is not valid.")
+    .withMessage("Домашняя страница недействительна.")
 ];
 
 export const removeDomain = [
@@ -244,7 +244,7 @@ export const reportLink = [
     })
     .customSanitizer(addProtocol)
     .custom(value => URL.parse(value).hostname === env.DEFAULT_DOMAIN)
-    .withMessage(`You can only report a ${env.DEFAULT_DOMAIN} link.`)
+    .withMessage(`Вы можете отправить жалобу только на ссылку в домене ${env.DEFAULT_DOMAIN}.`)
 ];
 
 export const banLink = [
@@ -289,13 +289,13 @@ export const signup = [
   body("password", "Password is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 8, max: 64 })
-    .withMessage("Password length must be between 8 and 64."),
+    .withMessage("Длина пароля должна быть от 8 до 64."),
   body("email", "Email is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .trim()
     .isEmail()
     .isLength({ min: 0, max: 255 })
-    .withMessage("Email length must be max 255.")
+    .withMessage("Длина адреса электронной почты не должна превышать 255.")
     .custom(async (value, { req }) => {
       const user = await query.user.find({ email: value });
 
@@ -305,27 +305,27 @@ export const signup = [
 
       if (user?.verified) return Promise.reject();
     })
-    .withMessage("You can't use this email address.")
+    .withMessage("Вы не можете использовать этот адрес электронной почты.")
 ];
 
 export const login = [
   body("password", "Password is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 8, max: 64 })
-    .withMessage("Password length must be between 8 and 64."),
+    .withMessage("Длина пароля должна быть от 8 до 64."),
   body("email", "Email is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .trim()
     .isEmail()
     .isLength({ min: 0, max: 255 })
-    .withMessage("Email length must be max 255.")
+    .withMessage("Длина адреса электронной почты не должна превышать 255.")
 ];
 
 export const changePassword = [
   body("password", "Password is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 8, max: 64 })
-    .withMessage("Password length must be between 8 and 64.")
+    .withMessage("Длина пароля должна быть от 8 до 64.")
 ];
 
 export const resetPasswordRequest = [
@@ -334,11 +334,11 @@ export const resetPasswordRequest = [
     .trim()
     .isEmail()
     .isLength({ min: 0, max: 255 })
-    .withMessage("Email length must be max 255."),
+    .withMessage("Длина адреса электронной почты не должна превышать 255."),
   body("password", "Password is not valid.")
     .exists({ checkFalsy: true, checkNull: true })
     .isLength({ min: 8, max: 64 })
-    .withMessage("Password length must be between 8 and 64.")
+    .withMessage("Длина пароля должна быть от 8 до 64.")
 ];
 
 export const resetEmailRequest = [
@@ -347,7 +347,7 @@ export const resetEmailRequest = [
     .trim()
     .isEmail()
     .isLength({ min: 0, max: 255 })
-    .withMessage("Email length must be max 255.")
+    .withMessage("Длина адреса электронной почты не должна превышать 255.")
 ];
 
 export const deleteUser = [
@@ -369,7 +369,7 @@ export const cooldown = (user: User) => {
   );
 
   if (hasCooldownNow) {
-    throw new CustomError("Cooldown because of a malware URL. Wait 12h");
+    throw new CustomError("URL-адрес заблокирован как вредоносный. Подождите 12ч");
   }
 };
 
@@ -416,12 +416,12 @@ export const malware = async (user: User, target: string) => {
     // Ban if too many cooldowns
     if (updatedUser.cooldowns.length > 2) {
       await query.user.update({ id: user.id }, { banned: true });
-      throw new CustomError("Too much malware requests. You are now banned.");
+      throw new CustomError("Слишком много запросов о вредоносных ссылках. Выша учетная запись заблокирована.");
     }
   }
 
   throw new CustomError(
-    user ? "Malware detected! Cooldown for 12h." : "Malware detected!"
+    user ? "Обнаружена вредоносная ссылка! Время восстановления 12ч." : "Вредоносная ссылка!"
   );
 };
 
@@ -435,7 +435,7 @@ export const linksCount = async (user?: User) => {
 
   if (count > env.USER_LIMIT_PER_DAY) {
     throw new CustomError(
-      `You have reached your daily limit (${env.USER_LIMIT_PER_DAY}). Please wait 24h.`
+      `Вы достигли дневного лимита (${env.USER_LIMIT_PER_DAY}). Пожалуйста, подождите 24ч.`
     );
   }
 };
@@ -447,7 +447,7 @@ export const bannedDomain = async (domain: string) => {
   });
 
   if (isBanned) {
-    throw new CustomError("URL is containing malware/scam.", 400);
+    throw new CustomError("URL-адрес содержит вредоносное ПО/мошенничество.", 400);
   }
 };
 
@@ -468,6 +468,6 @@ export const bannedHost = async (domain: string) => {
   }
 
   if (isBanned) {
-    throw new CustomError("URL is containing malware/scam.", 400);
+    throw new CustomError("URL-адрес содержит вредоносное ПО/мошенничество.", 400);
   }
 };
