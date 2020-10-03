@@ -476,10 +476,10 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             <Span bold>"{removeProtocol(link.link)}"</Span>?
           </Text>
           <RowCenter>
-            <Checkbox {...checkbox("user")} label="Пользователь  " mb={12} />
-            <Checkbox {...checkbox("userLinks")} label="Ссылки  " mb={12} />
-            <Checkbox {...checkbox("host")} label="Узел  " mb={12} />
-            <Checkbox {...checkbox("domain")} label="Домен  " mb={12} />
+            <Checkbox {...checkbox("user")} label="Пользователь" mb={12} />
+            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={12} />
+            <Checkbox {...checkbox("host")} label="Узел" mb={12} />
+            <Checkbox {...checkbox("domain")} label="Домен" mb={12} />
           </RowCenter>
           <Flex justifyContent="center" mt={4}>
             {banLoading ? (
