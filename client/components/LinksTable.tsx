@@ -92,8 +92,8 @@ const ogLinkFlex = { flexGrow: [1, 3, 7], flexShrink: [1, 3, 7] };
 const createdFlex = { flexGrow: [1, 1, 2.5], flexShrink: [1, 1, 2.5] };
 const shortLinkFlex = { flexGrow: [1, 1, 3], flexShrink: [1, 1, 3] };
 const viewsFlex = {
-  flexGrow: [0.1, 0.1, 1],
-  flexShrink: [0.1, 0.1, 1],
+  flexGrow: [0.5, 0.5, 1],
+  flexShrink: [0.5, 0.5, 1],
   justifyContent: "flex-end"
 };
 const actionsFlex = { flexGrow: [1, 1, 3], flexShrink: [1, 1, 3] };
@@ -476,10 +476,10 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             <Span bold>"{removeProtocol(link.link)}"</Span>?
           </Text>
           <RowCenter>
-            <Checkbox {...checkbox("user")} label="Пользователь" mb={12} />
-            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={12} />
-            <Checkbox {...checkbox("host")} label="Узел" mb={12} />
-            <Checkbox {...checkbox("domain")} label="Домен" mb={12} />
+            <Checkbox {...checkbox("user")} label="Пользователь" mb={24} />
+            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={24} />
+            <Checkbox {...checkbox("host")} label="Узел" mb={24} />
+            <Checkbox {...checkbox("domain")} label="Домен" mb={24} />
           </RowCenter>
           <Flex justifyContent="center" mt={4}>
             {banLoading ? (
