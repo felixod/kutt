@@ -120,7 +120,7 @@ const LoginPage = () => {
               autoFocus
             />
             <Text {...label("password")} as="label" mb={2} bold>
-              Password{!DISALLOW_REGISTRATION ? " (min chars: 8)" : ""}:
+              Пароль{!DISALLOW_REGISTRATION ? " (мин.: 8 симвл.)" : ""}:
             </Text>
             <TextInput
               {...password("password")}
@@ -144,7 +144,7 @@ const LoginPage = () => {
                   stroke="white"
                   mr={2}
                 />
-                Log in
+                Войти
               </Button>
               {!DISALLOW_REGISTRATION && (
                 <Button
@@ -159,7 +159,7 @@ const LoginPage = () => {
                     stroke="white"
                     mr={2}
                   />
-                  Sign up
+                  Зарегистрироваться
                 </Button>
               )}
             </Flex>
