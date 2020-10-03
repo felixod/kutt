@@ -45,7 +45,7 @@ const SettingsChangeEmail: FC = () => {
   return (
     <Col alignItems="flex-start" maxWidth="100%">
       <H2 mb={4} bold>
-        Change email address
+        Изменить адрес электронной почты
       </H2>
       <Col alignItems="flex-start" onSubmit={onSubmit} width={1} as="form">
         <Flex width={1} flexDirection={["column", "row"]}>
@@ -57,11 +57,11 @@ const SettingsChangeEmail: FC = () => {
               fontSize={[15, 16]}
               bold
             >
-              Password:
+              Пароль:
             </Text>
             <TextInput
               {...password("changeemailpass")}
-              placeholder="Password..."
+              placeholder="Пароль..."
               maxWidth="240px"
               required
             />
@@ -74,11 +74,11 @@ const SettingsChangeEmail: FC = () => {
               fontSize={[15, 16]}
               bold
             >
-              New email address:
+              Новый электронный адрес:
             </Text>
             <TextInput
               {...email("changeemailaddress")}
-              placeholder="john@examaple.com"
+              placeholder="john@samgups.ru"
               flex="1 1 auto"
               maxWidth="240px"
             />
@@ -86,7 +86,7 @@ const SettingsChangeEmail: FC = () => {
         </Flex>
         <Button type="submit" color="blue" mt={[24, 3]} disabled={loading}>
           <Icon name={loading ? "spinner" : "refresh"} mr={2} stroke="white" />
-          {loading ? "Sending..." : "Update"}
+          {loading ? "Отправка..." : "Обновить"}
         </Button>
       </Col>
       <Text fontSize={15} color={message.color} mt={3}>

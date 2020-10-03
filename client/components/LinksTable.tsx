@@ -199,10 +199,10 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           </Col>
         </Td>
         <Td {...createdFlex} flexDirection="column" alignItems="flex-start">
-          <Text>{formatDistanceToNow(new Date(link.created_at), {locale: ruLocale})} ago</Text>
+          <Text>{formatDistanceToNow(new Date(link.created_at), {locale: ruLocale})} назад</Text>
           {link.expire_in && (
             <Text fontSize={[13, 14]} color="#888">
-              Expires in{" "}
+              Истекает{" "}
               {ms(
                 differenceInMilliseconds(new Date(link.expire_in), new Date()),
                 {
@@ -250,7 +250,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           {link.password && (
             <>
               <Tooltip id={`${index}-tooltip-password`}>
-                Password protected
+                Защищена паролем
               </Tooltip>
               <Action
                 as="span"
@@ -265,7 +265,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           )}
           {link.banned && (
             <>
-              <Tooltip id={`${index}-tooltip-banned`}>Banned</Tooltip>
+              <Tooltip id={`${index}-tooltip-banned`}>Заблокирована</Tooltip>
               <Action
                 as="span"
                 data-tip

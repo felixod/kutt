@@ -20,7 +20,7 @@ const SettingsPage: NextPage = () => {
     <AppWrapper>
       <Col width={600} maxWidth="90%" alignItems="flex-start" pb={80} mt={4}>
         <H1 alignItems="center" fontSize={[24, 28]} light>
-          Welcome,{" "}
+          Добро пожаловать,{" "}
           <Span pb="2px" style={{ borderBottom: "2px dotted #999" }}>
             {email}
           </Span>

@@ -53,10 +53,10 @@ const SettingsDeleteAccount: FC = () => {
   return (
     <Col alignItems="flex-start" maxWidth="100%">
       <H2 mb={4} bold>
-        Delete account
+        Удалить аккаунт
       </H2>
       <Text mb={4}>
-        Delete your account from {publicRuntimeConfig.SITE_NAME}.
+        Удалить свою учетную запись из {publicRuntimeConfig.SITE_NAME}.
       </Text>
       <Text
         {...label("password")}
@@ -65,18 +65,18 @@ const SettingsDeleteAccount: FC = () => {
         fontSize={[15, 16]}
         bold
       >
-        Password:
+        Пароль:
       </Text>
       <RowCenterV as="form" onSubmit={onSubmit}>
         <TextInput
           {...password("accpass")}
-          placeholder="Password..."
+          placeholder="Пароль..."
           autocomplete="off"
           mr={3}
         />
         <Button color="red" type="submit" disabled={loading}>
           <Icon name={loading ? "spinner" : "trash"} mr={2} stroke="white" />
-          Delete
+          Удалить
         </Button>
       </RowCenterV>
       <Modal
@@ -86,11 +86,11 @@ const SettingsDeleteAccount: FC = () => {
       >
         <>
           <H2 mb={24} textAlign="center" bold>
-            Delete account?
+            Удалить учетную запись?
           </H2>
           <Text textAlign="center">
-            All of your data including your <Span bold>LINKS</Span> and{" "}
-            <Span bold>STATS</Span> will be deleted.
+            Все ваши данные, включая ваши <Span bold>ССЫЛКИ</Span> и{" "}
+            <Span bold>СТАТИСТИКУ</Span> будут удалены.
           </Text>
           <RowCenterH mt={44}>
             {loading ? (
@@ -104,11 +104,11 @@ const SettingsDeleteAccount: FC = () => {
             ) : (
               <>
                 <Button color="gray" mr={3} onClick={() => setModal(false)}>
-                  Cancel
+                  Отмена
                 </Button>
                 <Button color="red" ml={3} onClick={onDelete}>
                   <Icon name="trash" stroke="white" mr={2} />
-                  Delete
+                  Удалить
                 </Button>
               </>
             )}

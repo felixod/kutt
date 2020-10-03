@@ -48,12 +48,12 @@ const SettingsApi: FC = () => {
         API
       </H2>
       <Text mb={4}>
-        In additional to this website, you can use the API to create, delete and
-        get shortend URLs. If
-        {" you're"} not familiar with API, {"don't"} generate the key. DO NOT
-        share this key on the client side of your website.{" "}
-        <ALink href="https://docs.kutt.it" title="API Docs" target="_blank">
-          Read API docs.
+        В дополнение к этому веб-сайту вы можете использовать API для создания, 
+        удаления и получения сокращенных URL-адресов. Если
+        {" Вы"} не знакомы с API, {"НЕ"} генерируйте этот ключ. НЕ сообщайте 
+        этот ключ на клиентской стороне вашего сайта.{" "}
+        <ALink href="https://docs.kutt.it" title="API документация" target="_blank">
+          Прочтите документацию по API.
         </ALink>
       </Text>
       {apikey && (
@@ -96,7 +96,7 @@ const SettingsApi: FC = () => {
       )}
       <Button mt={3} color="purple" onClick={onSubmit} disabled={loading}>
         <Icon name={loading ? "spinner" : "zap"} mr={2} stroke="white" />
-        {loading ? "Generating..." : apikey ? "Regenerate" : "Generate"} key
+        {loading ? "Создание..." : apikey ? "Регенерировать" : "Генерировать"} ключ
       </Button>
       <Text fontSize={15} mt={3} color={message.color}>
         {message.text}

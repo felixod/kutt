@@ -45,9 +45,9 @@ const SettingsPassword: FC = () => {
   return (
     <Col alignItems="flex-start" maxWidth="100%">
       <H2 mb={4} bold>
-        Change password
+        Изменить пароль
       </H2>
-      <Text mb={4}>Enter a new password to change your current password.</Text>
+      <Text mb={4}>Введите новый пароль, чтобы изменить текущий.</Text>
       <Text
         {...label("password")}
         as="label"
@@ -55,7 +55,7 @@ const SettingsPassword: FC = () => {
         fontSize={[15, 16]}
         bold
       >
-        New password:
+        Новый пароль:
       </Text>
       <Flex as="form" onSubmit={onSubmit}>
         <TextInput
@@ -64,19 +64,19 @@ const SettingsPassword: FC = () => {
             validate: value => {
               const val = value.trim();
               if (!val || val.length < 8) {
-                return "Password must be at least 8 chars.";
+                return "Пароль должен состоять не менее чем из 8 символов.";
               }
             }
           })}
           autocomplete="off"
-          placeholder="New password..."
+          placeholder="Новый пароль..."
           width={[1, 2 / 3]}
           mr={3}
           required
         />
         <Button type="submit" disabled={loading}>
           <Icon name={loading ? "spinner" : "refresh"} mr={2} stroke="white" />
-          {loading ? "Updating..." : "Update"}
+          {loading ? "Обновление..." : "Обновить"}
         </Button>
       </Flex>
       <Text color={message.color} mt={3} fontSize={15}>

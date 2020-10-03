@@ -46,7 +46,7 @@ const SettingsDomain: FC = () => {
     try {
       await saveDomain(formState.values);
     } catch (err) {
-      setMessage(err?.response?.data?.error || "Couldn't add domain.");
+      setMessage(err?.response?.data?.error || "Не удалось добавить домен.");
     }
     formState.clear();
     setLoading(false);
@@ -60,9 +60,9 @@ const SettingsDomain: FC = () => {
   const onDelete = async () => {
     setDeleteLoading(true);
     await deleteDomain(domainToDelete.id).catch(err =>
-      setMessage(errorMessage(err, "Couldn't delete the domain."))
+      setMessage(errorMessage(err, "Не удалось удалить домен."))
     );
-    setMessage("Domain has been deleted successfully.", "green");
+    setMessage("Домен успешно удален.", "green");
     closeModal();
     setDeleteLoading(false);
   };
@@ -70,23 +70,23 @@ const SettingsDomain: FC = () => {
   return (
     <Col alignItems="flex-start" maxWidth="100%">
       <H2 mb={4} bold>
-        Custom domain
+        Собственный домен
       </H2>
       <Text mb={3}>
-        You can set a custom domain for your short URLs, so instead of{" "}
-        <b>{publicRuntimeConfig.DEFAULT_DOMAIN}/shorturl</b> you can have{" "}
+        Вы можете установить собственный домен для своих коротких URL-адресов, и вместо{" "}
+        <b>{publicRuntimeConfig.DEFAULT_DOMAIN}/shorturl</b> использовать {" "}
         <b>example.com/shorturl.</b>
       </Text>
       <Text mb={4}>
-        Point your domain A record to <b>192.64.116.170</b> then add the domain
-        via form below:
+        Укажите запись A вашего домена на <b>46.0.207.36</b>, затем добавьте 
+        домен через форму ниже:
       </Text>
       {domains.length > 0 && (
         <Table my={3} scrollWidth="550px">
           <thead>
             <tr>
-              <Th width={2 / 5}>Domain</Th>
-              <Th width={2 / 5}>Homepage</Th>
+              <Th width={2 / 5}>Домен</Th>
+              <Th width={2 / 5}>Домашняя страница</Th>
               <Th width={1 / 5}></Th>
             </tr>
           </thead>
@@ -152,11 +152,11 @@ const SettingsDomain: FC = () => {
               fontSize={[15, 16]}
               bold
             >
-              Homepage (optional):
+              Домашняя страница (необязательно):
             </Text>
             <TextInput
               {...text("homepage")}
-              placeholder="Homepage URL"
+              placeholder="URL домашней страницы"
               flex="1 1 auto"
               maxWidth="240px"
             />
@@ -164,16 +164,16 @@ const SettingsDomain: FC = () => {
         </Flex>
         <Button type="submit" color="purple" mt={[24, 3]} disabled={loading}>
           <Icon name={loading ? "spinner" : "plus"} mr={2} stroke="white" />
-          {loading ? "Setting..." : "Set domain"}
+          {loading ? "Настройка..." : "Установить домен"}
         </Button>
       </Col>
       <Text color={message.color}>{message.text}</Text>
       <Modal id="delete-custom-domain" show={modal} closeHandler={closeModal}>
         <H2 mb={24} textAlign="center" bold>
-          Delete domain?
+          Удалить домен?
         </H2>
         <Text textAlign="center">
-          Are you sure do you want to delete the domain{" "}
+          Вы уверены, что хотите удалить домен?{" "}
           <Span bold>"{domainToDelete && domainToDelete.address}"</Span>?
         </Text>
         <Flex justifyContent="center" mt={44}>
@@ -184,11 +184,11 @@ const SettingsDomain: FC = () => {
           ) : (
             <>
               <Button color="gray" mr={3} onClick={closeModal}>
-                Cancel
+                Отмена
               </Button>
               <Button color="red" ml={3} onClick={onDelete}>
                 <Icon name="trash" stroke="white" mr={2} />
-                Delete
+                Удалить
               </Button>
             </>
           )}
