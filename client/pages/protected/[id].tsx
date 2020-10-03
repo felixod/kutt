@@ -58,7 +58,7 @@ const ProtectedPage: NextPage<Props> = () => {
           <H2 my={3} bold>
           Защищенная ссылка
           </H2>
-          <Text mb={4}>Введите пароль, для перенаправления по ссылке.</Text>
+          <Text mb={4}>Введите пароль, для перехода по ссылке.</Text>
           <Flex
             as="form"
             alignItems="center"
