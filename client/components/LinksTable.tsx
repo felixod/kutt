@@ -198,7 +198,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           </Col>
         </Td>
         <Td {...createdFlex} flexDirection="column" alignItems="flex-start">
-          <Text>{formatDistanceToNow(new Date(link.created_at))} ago</Text>
+          <Text>{formatDistanceToNow(new Date(link.created_at), {locale: require('date-fns/locale/ru')})} ago</Text>
           {link.expire_in && (
             <Text fontSize={[13, 14]} color="#888">
               Expires in{" "}
@@ -476,10 +476,10 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             <Span bold>"{removeProtocol(link.link)}"</Span>?
           </Text>
           <RowCenter>
-            <Checkbox {...checkbox("user")} label="Пользователь" mb={24} />
-            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={24} />
-            <Checkbox {...checkbox("host")} label="Узел" mb={24} />
-            <Checkbox {...checkbox("domain")} label="Домен" mb={24} />
+            <Checkbox {...checkbox("user")} label="Пользователь" mb={12} />
+            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={12} />
+            <Checkbox {...checkbox("host")} label="Узел" mb={12} />
+            <Checkbox {...checkbox("domain")} label="Домен" mb={12} />
           </RowCenter>
           <Flex justifyContent="center" mt={4}>
             {banLoading ? (
