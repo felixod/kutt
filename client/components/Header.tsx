@@ -58,11 +58,11 @@ const Header: FC = () => {
       <Link href="/login">
         <ALink
           href="/login"
-          title={!DISALLOW_REGISTRATION ? "login / signup" : "login"}
+          title={!DISALLOW_REGISTRATION ? "Войти / Зарегистрироваться" : "Войти"}
           forButton
         >
           <Button height={[32, 40]}>
-            {!DISALLOW_REGISTRATION ? "Log in / Sign up" : "Log in"}
+            {!DISALLOW_REGISTRATION ? "Войти / Зарегистрироваться" : "Войти"}
           </Button>
         </ALink>
       </Link>
@@ -71,8 +71,8 @@ const Header: FC = () => {
   const logout = isAuthenticated && (
     <Li>
       <Link href="/logout">
-        <ALink href="/logout" title="logout" fontSize={[14, 16]}>
-          Log out
+        <ALink href="/logout" title="Выйти" fontSize={[14, 16]}>
+          Выйти
         </ALink>
       </Link>
     </Li>
@@ -80,8 +80,8 @@ const Header: FC = () => {
   const settings = isAuthenticated && (
     <Li>
       <Link href="/settings">
-        <ALink href="/settings" title="Settings" forButton>
-          <Button height={[32, 40]}>Settings</Button>
+        <ALink href="/settings" title="Настройки" forButton>
+          <Button height={[32, 40]}>Настройки</Button>
         </ALink>
       </Link>
     </Li>
@@ -125,20 +125,9 @@ const Header: FC = () => {
             p={0}
           >
             <Li>
-              <ALink
-                href="//github.com/thedevs-network/kutt"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="GitHub"
-                fontSize={[14, 16]}
-              >
-                GitHub
-              </ALink>
-            </Li>
-            <Li>
               <Link href="/report">
-                <ALink href="/report" title="Report abuse" fontSize={[14, 16]}>
-                  Report
+                <ALink href="/report" title="Сообщить о нарушении" fontSize={[14, 16]}>
+                  Сообщить о нарушении
                 </ALink>
               </Link>
             </Li>
@@ -155,8 +144,8 @@ const Header: FC = () => {
         <Li>
           <Flex display={["flex", "none"]}>
             <Link href="/report">
-              <ALink href="/report" title="Report" fontSize={[14, 16]}>
-                Report
+              <ALink href="/report" title="Сообщить о нарушении" fontSize={[14, 16]}>
+                Сообщить о нарушении
               </ALink>
             </Link>
           </Flex>

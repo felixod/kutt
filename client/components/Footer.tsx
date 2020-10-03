@@ -26,34 +26,34 @@ const Footer: FC = () => {
     >
       {!isAuthenticated && <ReCaptcha />}
       <Text fontSize={[12, 13]} py={2}>
-        Made with love by{" "}
+      Сделано с любовью {" "}
         <ALink href="//thedevs.network/" title="The Devs">
           The Devs
         </ALink>
         .{" | "}
         <ALink
-          href="https://github.com/thedevs-network/kutt"
-          title="GitHub"
+          href="https://www.samgups.ru"
+          title="СамГУПС"
           target="_blank"
         >
-          GitHub
+          СамГУПС
         </ALink>
         {" | "}
-        <ALink href="/terms" title="Terms of Service">
-          Terms of Service
+        <ALink href="/terms" title="Условия использования">
+          Условия использования
         </ALink>
         {" | "}
-        <ALink href="/report" title="Report abuse">
-          Report Abuse
+        <ALink href="/report" title="Сообщить о нарушении">
+          Сообщить о нарушении
         </ALink>
         {publicRuntimeConfig.CONTACT_EMAIL && (
           <>
             {" | "}
             <ALink
               href={`mailto:${publicRuntimeConfig.CONTACT_EMAIL}`}
-              title="Contact us"
+              title="Связаться с нами"
             >
-              Contact us
+              Связаться с нами
             </ALink>
           </>
         )}
