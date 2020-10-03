@@ -135,11 +135,11 @@ const SettingsDomain: FC = () => {
               fontSize={[15, 16]}
               bold
             >
-              Domain:
+              Домен:
             </Text>
             <TextInput
               {...text("address")}
-              placeholder="example.com"
+              placeholder="samgups.ru"
               maxWidth="240px"
               required
             />

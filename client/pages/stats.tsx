@@ -52,7 +52,7 @@ const StatsPage: NextPage<Props> = ({ id }) => {
     errorMessage = (
       <Flex mt={3}>
         <Icon name="x" size={32} mr={3} stroke={Colors.TrashIcon} />
-        <H2>You need to login to view stats.</H2>
+        <H2>Вам необходимо войти в систему, чтобы просмотреть статистику.</H2>
       </Flex>
     );
   }
@@ -61,7 +61,7 @@ const StatsPage: NextPage<Props> = ({ id }) => {
     errorMessage = (
       <Flex mt={3}>
         <Icon name="x" size={32} mr={3} stroke={Colors.TrashIcon} />
-        <H2>Couldn't get stats.</H2>
+        <H2>Не удалось получить статистику.</H2>
       </Flex>
     );
   }
@@ -81,7 +81,7 @@ const StatsPage: NextPage<Props> = ({ id }) => {
           <Col width={1200} maxWidth="95%" alignItems="stretch" m="40px 0">
             <Flex justifyContent="space-between" alignItems="center" mb={3}>
               <H1 fontSize={[18, 20, 24]} light>
-                Stats for:{" "}
+                Статистика для:{" "}
                 <ALink href={data.link} title="Short link">
                   {removeProtocol(data.link)}
                 </ALink>
@@ -111,14 +111,14 @@ const StatsPage: NextPage<Props> = ({ id }) => {
                 px={[3, 4]}
               >
                 <H4>
-                  Total clicks: <Span bold>{data.total}</Span>
+                  Всего переходов: <Span bold>{data.total}</Span>
                 </H4>
                 <Flex>
                   {[
-                    ["allTime", "All Time"],
-                    ["lastMonth", "Month"],
-                    ["lastWeek", "Week"],
-                    ["lastDay", "Day"]
+                    ["allTime", "Все время"],
+                    ["lastMonth", "Месяц"],
+                    ["lastWeek", "Неделя"],
+                    ["lastDay", "День"]
                   ].map(([p, n]) => (
                     <NavButton
                       ml={10}
@@ -141,11 +141,11 @@ const StatsPage: NextPage<Props> = ({ id }) => {
                   >
                     {total}
                   </Span>{" "}
-                  tracked clicks in {periodText}.
+                  отслеженные переходы за {periodText}.
                 </H2>
                 <Text fontSize={[13, 14]} color={Colors.StatsLastUpdateText}>
-                  Last update in{" "}
-                  {formatDate(new Date(data.updatedAt), "hh:mm aa")}
+                  Последнее обновление в{" "}
+                  {formatDate(new Date(data.updatedAt), "HH:mm")}
                 </Text>
                 <Flex width={1} mt={4}>
                   <Area data={stats.views} period={period} />
@@ -156,13 +156,13 @@ const StatsPage: NextPage<Props> = ({ id }) => {
                     <Flex width={1}>
                       <Col flex="1 1 0">
                         <H2 mb={3} light>
-                          Referrals.
+                          Рефералы.
                         </H2>
                         <Pie data={stats.stats.referrer} />
                       </Col>
                       <Col flex="1 1 0">
                         <H2 mb={3} light>
-                          Browsers.
+                          Браузеры.
                         </H2>
                         <Bar data={stats.stats.browser} />
                       </Col>
@@ -171,13 +171,13 @@ const StatsPage: NextPage<Props> = ({ id }) => {
                     <Flex width={1}>
                       <Col flex="1 1 0">
                         <H2 mb={3} light>
-                          Country.
+                          Страна.
                         </H2>
                         <Map data={stats.stats.country} />
                       </Col>
                       <Col flex="1 1 0">
                         <H2 mb={3} light>
-                          OS.
+                          Операционная система.
                         </H2>
                         <Bar data={stats.stats.os} />
                       </Col>
@@ -188,10 +188,10 @@ const StatsPage: NextPage<Props> = ({ id }) => {
             </Col>
             <Box alignSelf="center" my={64}>
               <Link href="/">
-                <ALink href="/" title="Back to homepage" forButton>
+                <ALink href="/" title="Вернуться на главную" forButton>
                   <Button>
                     <Icon name="arrowLeft" stroke="white" mr={2} />
-                    Back to homepage
+                    Вернуться на главную
                   </Button>
                 </ALink>
               </Link>

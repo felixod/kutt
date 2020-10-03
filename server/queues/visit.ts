@@ -30,7 +30,7 @@ export default function({ data }) {
         country: country || "Unknown",
         id: data.link.id,
         os: os.toLowerCase().replace(/\s/gi, ""),
-        referrer: (referrer && referrer.replace(/\./gi, "[dot]")) || "Direct"
+        referrer: (referrer && referrer.replace(/\./gi, "[dot]")) || "Прямая"
       })
     );
   }
