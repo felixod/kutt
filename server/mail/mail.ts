@@ -44,7 +44,7 @@ export const verification = async (user: User) => {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Verify your account",
+    subject: "Подтвердите ваш аккаунт",
     text: verifyMailText
       .replace(/{{verification}}/gim, user.verification_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
@@ -56,7 +56,7 @@ export const verification = async (user: User) => {
   });
 
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't send verification email. Try again later.");
+    throw new CustomError("Не удалось отправить письмо с подтверждением. Попробуйте позже.");
   }
 };
 
@@ -64,7 +64,7 @@ export const changeEmail = async (user: User) => {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.change_email_address,
-    subject: "Verify your new email address",
+    subject: "Подтвердите свой новый адрес электронной почты",
     text: changeEmailText
       .replace(/{{verification}}/gim, user.change_email_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN)
@@ -76,7 +76,7 @@ export const changeEmail = async (user: User) => {
   });
 
   if (!mail.accepted.length) {
-    throw new CustomError("Couldn't send verification email. Try again later.");
+    throw new CustomError("Не удалось отправить письмо с подтверждением. Попробуйте позже.");
   }
 };
 
@@ -84,7 +84,7 @@ export const resetPasswordToken = async (user: User) => {
   const mail = await transporter.sendMail({
     from: env.MAIL_FROM || env.MAIL_USER,
     to: user.email,
-    subject: "Reset your password",
+    subject: "Сбросить пароль",
     text: resetMailText
       .replace(/{{resetpassword}}/gm, user.reset_password_token)
       .replace(/{{domain}}/gm, env.DEFAULT_DOMAIN),
