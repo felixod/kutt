@@ -196,7 +196,7 @@ export const resetPasswordRequest: Handler = async (req, res) => {
   }
 
   return res.status(200).send({
-    message: "If email address exists, a reset password email has been sent."
+    message: "Если адрес электронной почты существует, мы отправим на него письмо для сброса пароля."
   });
 };
 

@@ -54,9 +54,9 @@ const ResetPassword: NextPage<Props> = ({ token }) => {
       await axios.post(APIv2.AuthResetPassword, {
         email: formState.values.email
       });
-      setMessage("Reset password email has been sent.", "green");
+      setMessage("Электронное письмо для сброса пароля отправлено.", "green");
     } catch (error) {
-      setMessage(error?.response?.data?.error || "Couldn't reset password.");
+      setMessage(error?.response?.data?.error || "Не удалось сбросить пароль.");
     }
     setLoading(false);
   };
@@ -66,14 +66,14 @@ const ResetPassword: NextPage<Props> = ({ token }) => {
     <AppWrapper>
       <Col width={600} maxWidth="100%" px={3}>
         <H2 my={3} bold>
-          Reset password
+          Cбросить пароль
         </H2>
         <Text mb={4}>
-          If you forgot you password you can use the form below to get reset
-          password link.
+          Если вы забыли пароль, вы можете использовать форму ниже, чтобы получить ссылку 
+          для сброса пароля.
         </Text>
         <Text {...label("homepage")} as="label" mt={2} fontSize={[15, 16]} bold>
-          Email address
+          Адрес электронной почты
         </Text>
         <Flex
           as="form"
@@ -83,7 +83,7 @@ const ResetPassword: NextPage<Props> = ({ token }) => {
         >
           <TextInput
             {...email("email")}
-            placeholder="Email address..."
+            placeholder="Адрес электронной почты..."
             height={[44, 54]}
             width={[1, 1 / 2]}
             mr={3}
@@ -92,7 +92,7 @@ const ResetPassword: NextPage<Props> = ({ token }) => {
           />
           <Button type="submit" height={[40, 44]} my={3}>
             {loading && <Icon name={"spinner"} stroke="white" mr={2} />}
-            Reset password
+            Cбросить пароль
           </Button>
         </Flex>
         <Text fontSize={14} color={message.color} mt={2} normal>

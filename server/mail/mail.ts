@@ -95,7 +95,7 @@ export const resetPasswordToken = async (user: User) => {
 
   if (!mail.accepted.length) {
     throw new CustomError(
-      "Couldn't send reset password email. Try again later."
+      "Не удалось отправить электронное письмо для сброса пароля. Попробуйте позже."
     );
   }
 };
