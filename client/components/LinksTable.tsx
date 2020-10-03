@@ -250,7 +250,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           {link.password && (
             <>
               <Tooltip id={`${index}-tooltip-password`}>
-                Защищена паролем
+                URL-адрес защищен паролем
               </Tooltip>
               <Action
                 as="span"
