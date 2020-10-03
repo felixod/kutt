@@ -91,7 +91,7 @@ const Shortener = () => {
       formState.clear();
     } catch (err) {
       setMessage(
-        err?.response?.data?.error || "Couldn't create the short link."
+        err?.response?.data?.error || "Не удалось создать короткую ссылку."
       );
     }
     setLoading(false);
@@ -130,9 +130,9 @@ const Shortener = () => {
 
   const title = !link && (
     <H1 fontSize={[25, 27, 32]} light>
-      Kutt your links{" "}
+      Сделайте свои ссылки {" "}
       <Span style={{ borderBottom: "2px dotted #999" }} light>
-        shorter
+        короче
       </Span>
       .
     </H1>
@@ -201,7 +201,7 @@ const Shortener = () => {
       >
         <TextInput
           {...text("target")}
-          placeholder="Paste your long URL"
+          placeholder="Вставьте Ваш длинный URL-адрес"
           placeholderSize={[16, 17, 18]}
           fontSize={[18, 20, 22]}
           width={1}
@@ -234,7 +234,7 @@ const Shortener = () => {
           onChange: e => {
             if (!isAuthenticated) {
               setMessage(
-                "You need to log in or sign up to use advanced options."
+                "Вам необходимо войти в систему или зарегистрироваться, чтобы использовать дополнительные параметры."
               );
               return false;
             }
@@ -242,7 +242,7 @@ const Shortener = () => {
           }
         })}
         checked={formState.values.showAdvanced}
-        label="Show advanced options"
+        label="Показать дополнительные параметры"
         mt={[3, 24]}
         alignSelf="flex-start"
       />
@@ -257,7 +257,7 @@ const Shortener = () => {
                 mb={2}
                 bold
               >
-                Domain:
+                Домен:
               </Text>
               <Select
                 {...select("domain")}
@@ -288,7 +288,7 @@ const Shortener = () => {
               </Text>
               <TextInput
                 {...text("customurl")}
-                placeholder="Custom address..."
+                placeholder="Настраиваемый адрес..."
                 autocomplete="off"
                 data-lpignore
                 pl={[3, 24]}
@@ -307,11 +307,11 @@ const Shortener = () => {
                 mb={2}
                 bold
               >
-                Password:
+                Пароль:
               </Text>
               <TextInput
                 {...password("password")}
-                placeholder="Password..."
+                placeholder="Пароль..."
                 autocomplete="off"
                 data-lpignore
                 pl={[3, 24]}
@@ -332,7 +332,7 @@ const Shortener = () => {
                 mb={2}
                 bold
               >
-                Expire in:
+                Срок действия:
               </Text>
               <TextInput
                 {...text("expire_in")}
@@ -355,11 +355,11 @@ const Shortener = () => {
                 mb={2}
                 bold
               >
-                Description:
+                Описание:
               </Text>
               <TextInput
                 {...text("description")}
-                placeholder="Description"
+                placeholder="Описание"
                 data-lpignore
                 pl={[3, 24]}
                 pr={[3, 24]}

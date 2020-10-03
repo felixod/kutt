@@ -278,7 +278,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
           )}
           {link.visit_count > 0 && (
             <Link href={`/stats?id=${link.id}`}>
-              <ALink title="View stats" forButton>
+              <ALink title="Посмотреть статистику" forButton>
                 <Action
                   name="pieChart"
                   stroke={Colors.PieIcon}
@@ -339,12 +339,12 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                   fontSize={[14, 15]}
                   bold
                 >
-                  Target:
+                  Цель:
                 </Text>
                 <Flex as="form">
                   <TextInput
                     {...text("target")}
-                    placeholder="Target..."
+                    placeholder="Цель..."
                     placeholderSize={[13, 14]}
                     fontSize={[14, 15]}
                     height={[40, 44]}
@@ -368,7 +368,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                 <Flex as="form">
                   <TextInput
                     {...text("address")}
-                    placeholder="Custom address..."
+                    placeholder="Настраиваемый адрес..."
                     placeholderSize={[13, 14]}
                     fontSize={[14, 15]}
                     height={[40, 44]}
@@ -389,12 +389,12 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                   fontSize={[14, 15]}
                   bold
                 >
-                  Description:
+                  Описание:
                 </Text>
                 <Flex as="form">
                   <TextInput
                     {...text("description")}
-                    placeholder="description..."
+                    placeholder="описание..."
                     placeholderSize={[13, 14]}
                     fontSize={[14, 15]}
                     height={[40, 44]}
@@ -413,7 +413,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                   fontSize={[14, 15]}
                   bold
                 >
-                  Expire in:
+                  Срок действия:
                 </Text>
                 <Flex as="form">
                   <TextInput
@@ -442,7 +442,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                 stroke="white"
                 mr={2}
               />
-              {editLoading ? "Updating..." : "Update"}
+              {editLoading ? "Обновление..." : "Обновить"}
             </Button>
             {editMessage.text && (
               <Text mt={3} fontSize={15} color={editMessage.color}>
@@ -469,17 +469,17 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
       >
         <>
           <H2 mb={24} textAlign="center" bold>
-            Ban link?
+            Заблокировать ссылку?
           </H2>
           <Text mb={24} textAlign="center">
-            Are you sure do you want to ban the link{" "}
+          Вы уверены, что хотите заблокировать ссылку{" "}
             <Span bold>"{removeProtocol(link.link)}"</Span>?
           </Text>
           <RowCenter>
-            <Checkbox {...checkbox("user")} label="User" mb={12} />
-            <Checkbox {...checkbox("userLinks")} label="User links" mb={12} />
-            <Checkbox {...checkbox("host")} label="Host" mb={12} />
-            <Checkbox {...checkbox("domain")} label="Domain" mb={12} />
+            <Checkbox {...checkbox("user")} label="Пользователь" mb={12} />
+            <Checkbox {...checkbox("userLinks")} label="Ссылки" mb={12} />
+            <Checkbox {...checkbox("host")} label="Адрес" mb={12} />
+            <Checkbox {...checkbox("domain")} label="Домен" mb={12} />
           </RowCenter>
           <Flex justifyContent="center" mt={4}>
             {banLoading ? (
@@ -493,11 +493,11 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             ) : (
               <>
                 <Button color="gray" mr={3} onClick={() => setBanModal(false)}>
-                  Cancel
+                  Отмена
                 </Button>
                 <Button color="red" ml={3} onClick={onBan}>
                   <Icon name="stop" stroke="white" mr={2} />
-                  Ban
+                  Заблокировать
                 </Button>
               </>
             )}
@@ -611,7 +611,7 @@ const LinksTable: FC = () => {
   return (
     <Col width={1200} maxWidth="95%" margin="40px 0 120px" my={6}>
       <H2 mb={3} light>
-        Recent shortened links.
+        Последние сокращенные ссылки.
       </H2>
       <Table scrollWidth="800px">
         <thead>
