@@ -10,54 +10,57 @@ const TermsPage = () => (
   <AppWrapper>
     {/* TODO: better container */}
     <Col width={600} maxWidth="97%" alignItems="flex-start">
-      <h3>{publicRuntimeConfig.SITE_NAME} Terms of Service</h3>
+      <h3>{publicRuntimeConfig.SITE_NAME} Условия обслуживания</h3>
       <p>
-        By accessing the website at{" "}
+        Зайдя на сайт по адресу{" "}
         <a href={`https://${publicRuntimeConfig.DEFAULT_DOMAIN}`}>
           https://{publicRuntimeConfig.DEFAULT_DOMAIN}
         </a>
-        , you are agreeing to be bound by these terms of service, all applicable
-        laws and regulations, and agree that you are responsible for compliance
-        with any applicable local laws. If you do not agree with any of these
-        terms, you are prohibited from using or accessing this site. The
-        materials contained in this website are protected by applicable
-        copyright and trademark law.
+        , вы соглашаетесь соблюдать эти условия обслуживания, все 
+        применимые законы и постановления и соглашаетесь с тем, что 
+        вы несете ответственность за соблюдение любых применимых 
+        местных законов. Если вы не согласны с каким-либо из этих 
+        условий, вам запрещается использование или доступ к 
+        этому сайту. Материалы, содержащиеся на этом веб-сайте, 
+        защищены действующим законодательством об авторских правах 
+        и товарных знаках.
       </p>
       <p>
-        In no event shall {publicRuntimeConfig.SITE_NAME} or its suppliers be
-        liable for any damages (including, without limitation, damages for loss
-        of data or profit, or due to business interruption) arising out of the
-        use or inability to use the materials on{" "}
-        {publicRuntimeConfig.DEFAULT_DOMAIN} website, even if{" "}
-        {publicRuntimeConfig.SITE_NAME} or a {publicRuntimeConfig.SITE_NAME}{" "}
-        authorized representative has been notified orally or in writing of the
-        possibility of such damage. Because some jurisdictions do not allow
-        limitations on implied warranties, or limitations of liability for
-        consequential or incidental damages, these limitations may not apply to
-        you.
+        Ни в коем случае {publicRuntimeConfig.SITE_NAME} 
+        НЕ несет ответственность за любой ущерб (включая, помимо прочего, 
+        убытки из-за потери данных или прибыль или потерю бизнеса), 
+        возникший в результате использования или невозможности 
+        использования материалов на сайте{" "}
+        {publicRuntimeConfig.DEFAULT_DOMAIN}, даже если{" "}
+        {publicRuntimeConfig.SITE_NAME} или {publicRuntimeConfig.SITE_NAME}{" "}
+        уполномоченный представитель был уведомлен устно или письменно о
+        возможность такого повреждения. Поскольку в некоторых юрисдикциях 
+        не допускаются ограничения подразумеваемых гарантий или ограничения 
+        ответственности за косвенный или случайный ущерб, эти ограничения 
+        могут не применяться к вам.
       </p>
       <p>
-        The materials appearing on {publicRuntimeConfig.SITE_NAME} website could
-        include technical, typographical, or photographic errors.{" "}
-        {publicRuntimeConfig.SITE_NAME} does not warrant that any of the
-        materials on its website are accurate, complete or current.{" "}
-        {publicRuntimeConfig.SITE_NAME} may make changes to the materials
-        contained on its website at any time without notice. However{" "}
-        {publicRuntimeConfig.SITE_NAME} does not make any commitment to update
-        the materials.
+        Материалы, представленные на сайте {publicRuntimeConfig.SITE_NAME} 
+        могут содержать технические, типографские или фотографические ошибки.{" "}
+        {publicRuntimeConfig.SITE_NAME} не гарантирует, что какие-либо материалы 
+        на его веб-сайте являются точными, полными или актуальными.{" "}
+        {publicRuntimeConfig.SITE_NAME} может вносить изменения в материалы, 
+        содержащиеся на своем веб-сайте, в любое время без предварительного 
+        уведомления. Однако{" "} {publicRuntimeConfig.SITE_NAME} не берет 
+        на себя никаких обязательств по обновлению материалов.
       </p>
       <p>
-        {publicRuntimeConfig.SITE_NAME} has not reviewed all of the sites linked
-        to its website and is not responsible for the contents of any such
-        linked site. The inclusion of any link does not imply endorsement by{" "}
-        {publicRuntimeConfig.SITE_NAME} of the site. Use of any such linked
-        website is at the {"user's"} own risk.
+        {publicRuntimeConfig.SITE_NAME} не проверил все сайты, связанные 
+        с его сайтом, и не несет ответственности за содержание любого 
+        такого сайта. Включение какой-либо ссылки не означает одобрения 
+        со стороны сайта{" "}{publicRuntimeConfig.SITE_NAME}. Использование 
+        любого такого связанного веб-сайта вы осуществляете на свой страх и риск.
       </p>
       <p>
-        {publicRuntimeConfig.SITE_NAME} may revise these terms of service for
-        its website at any time without notice. By using this website you are
-        agreeing to be bound by the then current version of these terms of
-        service.
+        {publicRuntimeConfig.SITE_NAME} может пересмотреть эти условия 
+        обслуживания для своего веб-сайта в любое время без предварительного 
+        уведомления. Используя этот веб-сайт, вы соглашаетесь соблюдать 
+        действующую на тот момент версию данных условий обслуживания.
       </p>
     </Col>
   </AppWrapper>
