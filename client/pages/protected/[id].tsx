@@ -28,7 +28,7 @@ const ProtectedPage: NextPage<Props> = () => {
     const { password } = formState.values;
 
     if (!password) {
-      return setError("Password must not be empty.");
+      return setError("Пароль не должен быть пустым.");
     }
 
     setError("");
@@ -51,14 +51,14 @@ const ProtectedPage: NextPage<Props> = () => {
     <AppWrapper>
       {!router.query.id ? (
         <H2 my={4} light>
-          404 | Link could not be found.
+          404 | Ссылка не найдена.
         </H2>
       ) : (
         <Col width={500} maxWidth="97%">
           <H2 my={3} bold>
-            Protected link
+          Защищенная ссылка
           </H2>
-          <Text mb={4}>Enter the password to be redirected to the link.</Text>
+          <Text mb={4}>Введите пароль, для перенаправления по ссылке.</Text>
           <Flex
             as="form"
             alignItems="center"
@@ -67,7 +67,7 @@ const ProtectedPage: NextPage<Props> = () => {
           >
             <TextInput
               {...password("password")}
-              placeholder="Password"
+              placeholder="Пароль"
               autocomplete="off"
               height={[44, 54]}
               width={[1, 1 / 2]}
@@ -77,7 +77,7 @@ const ProtectedPage: NextPage<Props> = () => {
             />
             <Button type="submit" height={[40, 44]}>
               {loading && <Icon name={"spinner"} stroke="white" mr={2} />}
-              Go
+              Перейти
             </Button>
           </Flex>
           <Text fontSize={14} color="red" mt={3} normal>
