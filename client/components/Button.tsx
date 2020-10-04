@@ -26,13 +26,13 @@ export const Button = styled(Flex)<Props>`
     gray: "#444"
   })};
   background: ${switchProp(prop("color", "blue"), {
-    blue: "linear-gradient(to right, #42a5f5, #2979ff)",
+    blue: "linear-gradient(to right, #035164, #002630)",
     red: "linear-gradient(to right, #ee3b3b, #e11c1c)",
     purple: "linear-gradient(to right, #7e57c2, #6200ea)",
     gray: "linear-gradient(to right, #e0e0e0, #bdbdbd)"
   })};
   box-shadow: ${switchProp(prop("color", "blue"), {
-    blue: "0 5px 6px rgba(66, 165, 245, 0.5)",
+    blue: "0 5px 6px rgba(93, 140, 144, 0.5)",
     red: "0 5px 6px rgba(168, 45, 45, 0.5)",
     purple: "0 5px 6px rgba(81, 45, 168, 0.5)",
     gray: "0 5px 6px rgba(160, 160, 160, 0.5)"
@@ -47,7 +47,7 @@ export const Button = styled(Flex)<Props>`
   :focus {
     outline: none;
     box-shadow: ${switchProp(prop("color", "blue"), {
-      blue: "0 6px 15px rgba(66, 165, 245, 0.5)",
+      blue: "0 6px 15px rgba(93, 140, 144, 0.5)",
       red: "0 6px 15px rgba(168, 45, 45, 0.5)",
       purple: "0 6px 15px rgba(81, 45, 168, 0.5)",
       gray: "0 6px 15px rgba(160, 160, 160, 0.5)"
