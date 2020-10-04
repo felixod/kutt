@@ -3,6 +3,8 @@ import subHours from "date-fns/subHours";
 import formatDate from "date-fns/format";
 import subDays from "date-fns/subDays";
 import React, { FC } from "react";
+import { ru } from 'date-fns/locale';
+
 import {
   AreaChart,
   Area,
@@ -25,14 +27,14 @@ const ChartArea: FC<Props> = ({ data: rawData, period }) => {
       case "allTime":
         return formatDate(
           subMonths(now, rawData.length - index - 1),
-          "MMM yyy"
+          "MMM yyy", { locale: ru }
         );
       case "lastDay":
-        return formatDate(subHours(now, rawData.length - index - 1), "HH:00");
+        return formatDate(subHours(now, rawData.length - index - 1), "HH:00", { locale: ru });
       case "lastMonth":
       case "lastWeek":
       default:
-        return formatDate(subDays(now, rawData.length - index - 1), "MMM dd");
+        return formatDate(subDays(now, rawData.length - index - 1), "MMM dd", { locale: ru });
     }
   };
   const data = rawData.map((view, index) => ({

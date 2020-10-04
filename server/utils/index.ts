@@ -102,7 +102,7 @@ export const getDifferenceFunction = (
   if (type === "lastWeek") return differenceInDays;
   if (type === "lastMonth") return differenceInDays;
   if (type === "allTime") return differenceInMonths;
-  throw new Error("Unknown type.");
+  throw new Error("Неизвестный тип.");
 };
 
 export const getUTCDate = (dateString?: Date) => {
