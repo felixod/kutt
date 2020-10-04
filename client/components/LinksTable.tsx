@@ -204,7 +204,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
             <Text fontSize={[13, 14]} color="#888">
               Истекает{" "}
               {ms(
-                differenceInMilliseconds(new Date(link.expire_in), new Date()),
+                differenceInMilliseconds(new Date(link.expire_in), new Date(), {locale: ruLocale}),
                 {
                   long: true
                 }
