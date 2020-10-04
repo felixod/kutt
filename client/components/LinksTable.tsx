@@ -205,10 +205,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
               Истекает через{" "}
               {formatDistanceToNow(
                 differenceInMilliseconds(new Date(link.expire_in), new Date()),
-                {
-                  long: true
-                }
-              , {locale: ruLocale})}
+              {locale: ruLocale})}
             </Text>
           )}
         </Td>
