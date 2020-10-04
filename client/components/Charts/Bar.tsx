@@ -32,7 +32,7 @@ const ChartBar: FC<Props> = ({ data }) => (
       <YAxis type="category" dataKey="name" />
       <CartesianGrid strokeDasharray="1 1" />
       <Tooltip />
-      <Bar dataKey="value" fill="#B39DDB" />
+      <Bar name="значение" dataKey="value" fill="#00AD8E" />
     </BarChart>
   </ResponsiveContainer>
 );
