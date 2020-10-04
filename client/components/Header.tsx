@@ -118,7 +118,7 @@ const Header: FC = () => {
           <Flex
             style={{ listStyle: "none" }}
             display={["none", "flex"]}
-            alignItems="flex-end"
+            alignItems={["flex-end", "center"]}
             as="ul"
             mb="3px"
             m={0}
@@ -142,7 +142,7 @@ const Header: FC = () => {
         style={{ listStyle: "none" }}
       >
         <Li>
-          <Flex display={["flex", "none"]}>
+          <Flex display={["flex", "none"]} alignItems={["flex-end", "center"]}>
             <Link href="/report">
               <ALink href="/report" title="Сообщить о нарушении" fontSize={[14, 16]}>
                 Сообщить о нарушении
