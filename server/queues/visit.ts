@@ -19,8 +19,8 @@ export default function({ data }) {
 
   if (data.link.visit_count < getStatsLimit()) {
     const agent = useragent.parse(data.headers["user-agent"]);
-    const [browser = "Другой"] = browsersList.filter(filterInBrowser(agent));
-    const [os = "Другая"] = osList.filter(filterInOs(agent));
+    const [browser = "Other"] = browsersList.filter(filterInBrowser(agent));
+    const [os = "Other"] = osList.filter(filterInOs(agent));
     const referrer = data.referrer && URL.parse(data.referrer).hostname;
     const location = geoip.lookup(data.realIP);
     const country = location && location.country;

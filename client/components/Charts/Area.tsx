@@ -67,7 +67,7 @@ const ChartArea: FC<Props> = ({ data: rawData, period }) => {
         <CartesianGrid strokeDasharray="1 1" />
         <Tooltip />
         <Area
-          name="просмотры"
+          name="переходы"
           type="monotone"
           dataKey="views"
           isAnimationActive={false}

@@ -22,7 +22,7 @@ const ChartPie: FC<Props> = ({ data }) => (
         data={data}
         dataKey="value"
         innerRadius={window.innerWidth < 468 ? 20 : 80}
-        fill="#B39DDB"
+        fill="#00C08E"
         label={({ name }) => name}
       />
       <Tooltip />
