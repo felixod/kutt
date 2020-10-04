@@ -104,7 +104,7 @@ const Header: FC = () => {
         <LogoImage>
           <a
             href="/"
-            title="Homepage"
+            title="Домашняя страница"
             onClick={e => {
               e.preventDefault();
               if (window.location.pathname !== "/") Router.push("/");

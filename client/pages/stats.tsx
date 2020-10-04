@@ -69,9 +69,15 @@ const StatsPage: NextPage<Props> = ({ id }) => {
   const loader = loading && <PageLoading />;
 
   const total = stats && stats.views.reduce((sum, view) => sum + view, 0);
-  const periodText = period.includes("last")
-    ? `за последний(юю) ${period.replace("last", "").toLocaleLowerCase()}`
-    : "все время";
+
+  if (period.includes("lastday"))
+    {const periodText = `последний день`;}
+  else if (period.includes("lastweek"))
+    {const periodText = `последнюю неделю`;}
+  else if (period.includes("lastmonth"))
+    {const periodText = `последний месяц`;}
+  else if (period.includes("alltime"))
+    {const periodText = `все время`;}
 
   return (
     <AppWrapper>
