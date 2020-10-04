@@ -19,18 +19,18 @@ export default function({ data }) {
 
   if (data.link.visit_count < getStatsLimit()) {
     const agent = useragent.parse(data.headers["user-agent"]);
-    const [browser = "Other"] = browsersList.filter(filterInBrowser(agent));
-    const [os = "Other"] = osList.filter(filterInOs(agent));
+    const [browser = "Другой"] = browsersList.filter(filterInBrowser(agent));
+    const [os = "Другая"] = osList.filter(filterInOs(agent));
     const referrer = data.referrer && URL.parse(data.referrer).hostname;
     const location = geoip.lookup(data.realIP);
     const country = location && location.country;
     tasks.push(
       query.visit.add({
         browser: browser.toLowerCase(),
-        country: country || "Unknown",
+        country: country || "Неизвестно",
         id: data.link.id,
         os: os.toLowerCase().replace(/\s/gi, ""),
-        referrer: (referrer && referrer.replace(/\./gi, "[dot]")) || "Direct"
+        referrer: (referrer && referrer.replace(/\./gi, "[тчк]")) || "Прямая"
       })
     );
   }
