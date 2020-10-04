@@ -49,7 +49,7 @@ export const Button = styled(Flex)<Props>`
     box-shadow: ${switchProp(prop("color", "blue"), {
       blue: "0 6px 15px rgba(93, 140, 144, 0.5)",
       red: "0 6px 15px rgba(168, 45, 45, 0.5)",
-      purple: "0 6px 15px rgba(81, 45, 168, 0.5)",
+      purple: "0 6px 15px rgba(92, 170, 238, 0.5)",
       gray: "0 6px 15px rgba(160, 160, 160, 0.5)"
     })};
     transform: translateY(-2px) scale(1.02, 1.02);

@@ -19,7 +19,7 @@ const Li = styled(Flex).attrs({ ml: [12, 24, 32] })`
     color: inherit;
 
     :hover {
-      color: #2196f3;
+      color: #0e728c;
     }
   }
 `;
