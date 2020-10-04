@@ -39,7 +39,7 @@ const ChartArea: FC<Props> = ({ data: rawData, period }) => {
   };
   const data = rawData.map((view, index) => ({
     name: getDate(index),
-    просмотры: view
+    views: view
   }));
 
   return (
@@ -68,7 +68,7 @@ const ChartArea: FC<Props> = ({ data: rawData, period }) => {
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="views"
+          dataKey="просмотры"
           isAnimationActive={false}
           stroke="#00C08E"
           fillOpacity={1}
