@@ -414,7 +414,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                 <Flex as="form">
                   <TextInput
                     {...text("expire_in")}
-                    placeholder="2 minutes/hours/days"
+                    placeholder="2 минуты/часа/дней"
                     placeholderSize={[13, 14]}
                     fontSize={[14, 15]}
                     height={[40, 44]}

@@ -21,13 +21,13 @@ const dnsLookup = promisify(dns.lookup);
 export const validationCriterias = [
   body("email")
     .exists()
-    .withMessage("Email must be provided.")
+    .withMessage("Адрес электронной почты должен быть заполнен.")
     .isEmail()
-    .withMessage("Email is not valid.")
+    .withMessage("Адрес электронной почты не является допустимым.")
     .trim(),
   body("password", "Password must be at least 8 chars long.")
     .exists()
-    .withMessage("Password must be provided.")
+    .withMessage("Необходимо указать пароль.")
     .isLength({ min: 8 })
 ];
 
@@ -68,11 +68,11 @@ export const preservedUrls = [
 export const validateUrl: RequestHandler = async (req, res, next) => {
   // Validate URL existence
   if (!req.body.target)
-    return res.status(400).json({ error: "No target has been provided." });
+    return res.status(400).json({ error: "Цель не указана." });
 
   // validate URL length
   if (req.body.target.length > 2040) {
-    return res.status(400).json({ error: "Maximum URL length is 2040." });
+    return res.status(400).json({ error: "Максимальная длина URL-адреса - 2040." });
   }
 
   // Validate URL
@@ -80,40 +80,40 @@ export const validateUrl: RequestHandler = async (req, res, next) => {
     req.body.target
   );
   if (!isValidUrl && !/^\w+:\/\//.test(req.body.target))
-    return res.status(400).json({ error: "URL is not valid." });
+    return res.status(400).json({ error: "URL недействителен." });
 
   // If target is the URL shortener itself
   const { host } = URL.parse(addProtocol(req.body.target));
   if (host === env.DEFAULT_DOMAIN) {
     return res
       .status(400)
-      .json({ error: `${env.DEFAULT_DOMAIN} URLs are not allowed.` });
+      .json({ error: `${env.DEFAULT_DOMAIN} URL-адреса не разрешены.` });
   }
 
   // Validate password length
   if (req.body.password && req.body.password.length > 64) {
-    return res.status(400).json({ error: "Maximum password length is 64." });
+    return res.status(400).json({ error: "Максимальная длина пароля - 64." });
   }
 
   // Custom URL validations
   if (req.user && req.body.customurl) {
     // Validate custom URL
     if (!/^[a-zA-Z0-9-_]+$/g.test(req.body.customurl.trim())) {
-      return res.status(400).json({ error: "Custom URL is not valid." });
+      return res.status(400).json({ error: "Пользовательский URL недействителен." });
     }
 
     // Prevent from using preserved URLs
     if (preservedUrls.some(url => url === req.body.customurl)) {
       return res
         .status(400)
-        .json({ error: "You can't use this custom URL name." });
+        .json({ error: "Вы не можете использовать это настраиваемый URL-адрес." });
     }
 
     // Validate custom URL length
     if (req.body.customurl.length > 64) {
       return res
         .status(400)
-        .json({ error: "Maximum custom URL length is 64." });
+        .json({ error: "Максимальная длина настраиваемого URL-адреса - 64." });
     }
   }
 
@@ -124,13 +124,13 @@ export const cooldownCheck = async (user: User) => {
   if (user && user.cooldowns) {
     if (user.cooldowns.length > 4) {
       await banUser(user.id);
-      throw new Error("Too much malware requests. You are banned.");
+      throw new Error("Слишком много запросов о вредоносном ПО. Вы заблокированы.");
     }
     const hasCooldownNow = user.cooldowns.some(cooldown =>
       isAfter(subHours(new Date(), 12), new Date(cooldown))
     );
     if (hasCooldownNow) {
-      throw new Error("Cooldown because of a malware URL. Wait 12h");
+      throw new Error("Восстановление из-за вредоносного URL. Подождите 12 часов");
     }
   }
 };
@@ -144,8 +144,8 @@ export const ipCooldownCheck: RequestHandler = async (req, res, next) => {
       cooldownConfig - differenceInMinutes(new Date(), new Date(ip.created_at));
     return res.status(400).json({
       error:
-        `Non-logged in users are limited. Wait ${timeToWait} ` +
-        "minutes or log in."
+        `Пользователи, не вошедшие в систему, ограничены. Подождите ${timeToWait} ` +
+        "минут или авторизуйтесь."
     });
   }
   next();
@@ -182,7 +182,7 @@ export const malwareCheck = async (user: User, target: string) => {
       await addCooldown(user.id);
     }
     throw new CustomError(
-      user ? "Malware detected! Cooldown for 12h." : "Malware detected!"
+      user ? "Обнаружено вредоносное ПО! Подождите 12 часов." : "Обнаружено вредоносное ПО!"
     );
   }
 };
@@ -194,7 +194,7 @@ export const urlCountsCheck = async (user: User) => {
   });
   if (count > env.USER_LIMIT_PER_DAY) {
     throw new CustomError(
-      `You have reached your daily limit (${env.USER_LIMIT_PER_DAY}). Please wait 24h.`
+      `Вы достигли дневного лимита (${env.USER_LIMIT_PER_DAY}). Подождите 24 часа.`
     );
   }
 };
@@ -202,7 +202,7 @@ export const urlCountsCheck = async (user: User) => {
 export const checkBannedDomain = async (domain: string) => {
   const bannedDomain = await getDomain({ address: domain, banned: true });
   if (bannedDomain) {
-    throw new CustomError("URL is containing malware/scam.");
+    throw new CustomError("URL содержит вредоносное ПО/мошенничество.");
   }
 };
 
@@ -218,6 +218,6 @@ export const checkBannedHost = async (domain: string) => {
     isHostBanned = null;
   }
   if (isHostBanned) {
-    throw new CustomError("URL is containing malware/scam.");
+    throw new CustomError("URL-адрес содержит вредоносное ПО/мошенничество.");
   }
 };

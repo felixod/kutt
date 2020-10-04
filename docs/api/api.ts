@@ -526,7 +526,7 @@ export default {
           },
           expire_in: {
             type: "string",
-            example: "2 minutes/hours/days"
+            example: "2 минуты/часа/дней"
           },
           password: {
             type: "string"
@@ -564,7 +564,7 @@ export default {
           },
           expire_in: {
             type: "string",
-            example: "2 minutes/hours/days"
+            example: "2 минуты/часа/дня"
           }
         }
       },
