@@ -39,7 +39,7 @@ const ChartArea: FC<Props> = ({ data: rawData, period }) => {
   };
   const data = rawData.map((view, index) => ({
     name: getDate(index),
-    views: view
+    просмотры: view
   }));
 
   return (
