@@ -132,11 +132,11 @@ interface Visit {
 
 interface Stats {
   browser: Record<
-    "chrome" | "edge" | "firefox" | "ie" | "opera" | "другой" | "safari",
+    "chrome" | "edge" | "firefox" | "ie" | "opera" | "other" | "safari",
     number
   >;
   os: Record<
-    "android" | "ios" | "linux" | "macos" | "другая" | "windows",
+    "android" | "ios" | "linux" | "macos" | "other" | "windows",
     number
   >;
   country: Record<string, number>;

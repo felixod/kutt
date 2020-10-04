@@ -278,7 +278,7 @@ const getInitStats = (): Stats =>
       firefox: 0,
       ie: 0,
       opera: 0,
-      other: 0,
+      другой: 0,
       safari: 0
     },
     os: {
@@ -286,7 +286,7 @@ const getInitStats = (): Stats =>
       ios: 0,
       linux: 0,
       macos: 0,
-      other: 0,
+      другая: 0,
       windows: 0
     },
     country: {},
