@@ -13,7 +13,7 @@ const ALink = styled(Box).attrs({
   as: "a"
 })<Props>`
   cursor: pointer;
-  color: #003948;
+  color: #0e728c;
   border-bottom: 1px dotted transparent;
   text-decoration: none;
   transition: all 0.2s ease-out;
@@ -22,7 +22,7 @@ const ALink = styled(Box).attrs({
     { forButton: false },
     css`
       :hover {
-        border-bottom-color: #2196f3;
+        border-bottom-color: #0e728c;
       }
     `
   )}
