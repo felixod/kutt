@@ -73,11 +73,11 @@ const StatsPage: NextPage<Props> = ({ id }) => {
   var periodText = "все время";
   
   if (period.includes("lastday"))
-    { periodText = `последний день`;}
+    {var periodText = `последний день`;}
   else if (period.includes("lastweek"))
-    { periodText = `последнюю неделю`;}
+    {var periodText = `последнюю неделю`;}
   else if (period.includes("lastmonth"))
-    { periodText = `последний месяц`;}
+    {var periodText = `последний месяц`;}
 
   return (
     <AppWrapper>
