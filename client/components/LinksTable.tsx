@@ -208,7 +208,7 @@ const Row: FC<RowProps> = ({ index, link, setDeleteModal }) => {
                 {
                   long: true
                 }
-              , {locale: ruLocale}))}
+              ), {locale: ruLocale})}
             </Text>
           )}
         </Td>
