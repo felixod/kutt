@@ -25,7 +25,7 @@ const BannedPage = () => {
           Если вы заметили ссылку на вредоносное ПО/мошенничество, сокращенную на{" "}
           {publicRuntimeConfig.SITE_NAME},{" "}
           <Link href="/report">
-            <ALink title="Send report">отправьте нам отчет</ALink>
+            <ALink title="Отправить жалобу">отправьте нам отчет</ALink>
           </Link>
           .
         </H4>
