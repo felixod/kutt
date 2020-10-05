@@ -336,7 +336,7 @@ const Shortener = () => {
               </Text>
               <TextInput
                 {...text("expire_in")}
-                placeholder="2 минуты/часа/дней"
+                placeholder="2 минуты/часа/дня"
                 data-lpignore
                 pl={[3, 24]}
                 pr={[3, 24]}

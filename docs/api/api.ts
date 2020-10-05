@@ -526,7 +526,7 @@ export default {
           },
           expire_in: {
             type: "string",
-            example: "2 минуты/часа/дней"
+            example: "2 минуты/часа/дня"
           },
           password: {
             type: "string"
