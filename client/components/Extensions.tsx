@@ -80,7 +80,7 @@ const Extensions = () => (
     backgroundColor={Colors.ExtensionsBg}
   >
     <H3 fontSize={[26, 28]} mb={5} color="white" light>
-      Расширения браузера.
+      Расширения браузера
     </H3>
     <Flex
       width={1200}
